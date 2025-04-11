@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "dot_matrix.h": "c"
+    },
+    "cortex-debug.gdbPath": "gdb-multiarch", 
+    "makefile.extensionOutputFolder": "./.vscode",
+    "cortex-debug.armToolchainPath": "/usr/bin",
+    "cortex-debug.openocdPath": "/usr/bin/openocd"
+}
