@@ -1,58 +1,28 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "cortex-debug",
-            "request": "launch",
-            "name": "Debug (OpenOCD)",
-            "servertype": "openocd",
-            "cwd": "${workspaceFolder}",
-            "runToEntryPoint": "main",
-            "executable": "./build/audioVisualizer.elf",
-            "device": "STM32F103CB",
-            "svdFile": "${workspaceFolder}/STM32F103xx.svd",
-            "configFiles": [
-                "interface/stlink-v2.cfg",
-                "target/stm32f1x.cfg"
-            ],
-            "showDevDebugOutput": "vscode",
-            "liveWatch": {
-                "enabled": true,
-                "samplesPerSecond": 4
-            }
-        },
-        {
-            "showDevDebugOutput": "parsed",
-            "cwd": "${workspaceRoot}",
-            "executable": "./build/bluepilltest.elf",
-            "name": "Debug STM32",
-            "request": "launch",
-            "type": "cortex-debug",
-            "servertype": "openocd",
-            "preLaunchTask": "Build all",
-            "device": "stm32f103xb.s",
-            "configFiles": [
-                "openocd.cfg"
-            ],
-            "svdFile": "STM32F103xx.svd"
-        },
-        {
-            "showDevDebugOutput": "parsed",
-            "cwd": "${workspaceRoot}",
-            "executable": "./build/bluepilltest.elf",
-            "name": "Attach STM32",
-            "request": "attach",
-            "type": "cortex-debug",
-            "servertype": "openocd",
-            "preLaunchTask": "Build all",
-            "device": "stm32f103xb.s",
-            "configFiles": [
-                "openocd.cfg"
-            ],
-            "svdFile": "STM32F103xx.svd"
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "cortex-debug",
+      "request": "launch",
+      "name": "Blue pill",
+      "servertype": "openocd",
+      "armToolchainPath": "/usr/bin",
+      "gdbPath": "/usr/bin/gdb-multiarch",
+      "objdumpPath": "/usr/bin/arm-none-eabi-objdump",
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/build/bluepilltest.elf",
+      "device": "STM32F103CB",  
+      "runToEntryPoint": "main",
+      "svdFile": "${workspaceFolder}/STM32F103xx.svd",
+      "showDevDebugOutput": "vscode",
+      "configFiles": [
+        "interface/stlink-v2.cfg",
+        "target/stm32f1x.cfg"
+      ],
+      "liveWatch": {
+        "enabled": true,
+        "samplesPerSecond": 4
+      }
+    },
+  ]
 }

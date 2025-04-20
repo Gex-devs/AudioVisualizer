@@ -1,12 +1,15 @@
-// Note: Output file must be changed
+
 {
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Clean and build",
-            "dependsOn": [
-                "Build clean",
-                "Build all"
+            "label": "Build all",
+            "group": "build",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "all",
+                "-j4"
             ]
         },
         {
@@ -16,50 +19,37 @@
             "command": "make",
             "args": [
                 "clean"
-            ],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            }
+            ]
         },
         {
-            "label": "Build all",
+            "label": "JFlash",
             "group": "build",
             "type": "shell",
             "command": "make",
             "args": [
-                "all"
-            ],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            }
+                "-j4",
+                "jflash"
+            ]
         },
         {
-            "label": "Flash STM32",
-            "windows": {
-                "command": "STM32_Programmer_CLI",
-                "args": [
-                    "-c",
-                    "port=SWD",
-                    "-d",
-                    "${workspaceFolder}\\build\\audioVisualizer.hex",
-                    "-v",
-                    "-hardRst"
-                ]
-            },
-            "linux": {
-                "command": "/home/gex/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/STM32_Programmer_CLI",
-                "args": [
-                    "-c",
-                    "port=SWD",
-                    "-d",
-                    "${workspaceFolder}/build/audioVisualizer.hex",
-                    "-v",
-                    "-rst",
-                    "-halt",
-                ]
-            },
-            "dependsOn": [
-                "Build all"
+            "label": "STflash",
+            "group": "build",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "-j4",
+                "stflash"
+            ]
+        },
+        {
+            "label": "UARTFlash",
+            "group": "build",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "-j4",
+                "uflash",
+                "PORT=/dev/ttyUSB1"
             ]
         },
         {
@@ -93,9 +83,18 @@
             ]
         },
         {
-            "label": "Flash STM",
+            "label": "Flash",
             "type": "process",
-            "command": "${command:stm32-for-vscode.flash}",
+            "command": "/home/gex/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/STM32_Programmer_CLI",
+            "args": [
+                "-c",
+                "port=SWD",
+                "-d",
+                "${workspaceFolder}/build/bluepilltest.hex",
+                "-v",
+                "-rst",
+                "-halt"
+            ],
             "options": {
                 "cwd": "${workspaceRoot}"
             },
@@ -103,8 +102,8 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": [
-                "$gcc"
+            "dependsOn": [
+                "Build all"
             ]
         }
     ]

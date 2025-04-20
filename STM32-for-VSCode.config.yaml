@@ -6,7 +6,7 @@
 # - entry_2
 
 # The project name
-target: audioVisualizer
+target: bluepilltest
 # Can be C or C++
 language: C
 
@@ -17,7 +17,7 @@ targetMCU: stm32f1x
 cpu: cortex-m3 # type of cpu e.g. cortex-m4
 fpu:  # Defines how floating points are defined. Can be left empty.
 floatAbi: 
-ldscript: STM32F103XX_FLASH.ld # linker script
+ldscript: STM32F103C8Tx_FLASH.ld # linker script
 
 # Compiler definitions. The -D prefix for the compiler will be automatically added.
 cDefinitions: []

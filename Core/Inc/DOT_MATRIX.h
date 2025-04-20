@@ -27,7 +27,7 @@
 
 // DOT Matrix Timer Base Options
 #define MATRIX_TIMER_EN   1
-#define MATRIX_TIMER      TIM4
+#define MATRIX_TIMER      TIM2
 #define MATRIX_TIMER_CLK  72
 #define MATRIX_TIME_BASE  1
 
@@ -78,5 +78,5 @@ void DOT_MATRIX_Main(void);
 void MATRIX_TMR_OVF_ISR(TIM_HandleTypeDef* htim);
 void MATRIX_SCROLL_SetSpeed(uint8_t au8_MATRIX_Instance, uint16_t au16_SPEED);
 void MATRIX_DisplayMessage(uint8_t au8_MATRIX_Instance, char* ArrayPointer, uint16_t ArraySize);
-
+void SET_COLUMN(uint8_t au8_MATRIX_Instance, uint8_t au8_Column, uint8_t au8_Value);
 #endif /* DOT_MATRIX_H_ */

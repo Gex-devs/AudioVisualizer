@@ -6,7 +6,7 @@
  ******************************************************************************
  * @attention
  *
- * Copyright (c) 2025 STMicroelectronics.
+ * Copyright (c) 2023 STMicroelectronics.
  * All rights reserved.
  *
  * This software is licensed under terms that can be found in the LICENSE file
@@ -21,11 +21,11 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "DOT_MATRIX.h"
-#include "arm_math.h"
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
+#include "DOT_MATRIX.h"
+#include <arm_math.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -41,23 +41,44 @@
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
 #define MATRIX_DISPLAY_UNIT1 0
+#define FFT_LENGTH  64
+#define MATRIX_X 32
+#define MATRIX_Y 8
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
 ADC_HandleTypeDef hadc1;
+DMA_HandleTypeDef hdma_adc1;
 
 SPI_HandleTypeDef hspi1;
 
-TIM_HandleTypeDef htim4;
+TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
+uint16_t microphone_input[FFT_LENGTH];
+bool status = false;
 arm_rfft_fast_instance_f32 fft_instance;
+arm_status status_fft;
+
+float32_t input_fft[FFT_LENGTH];
+float32_t output_fft[FFT_LENGTH];
+float32_t output_fft_mag[FFT_LENGTH / 2];
+char data_avgs[MATRIX_X];
+
+int yvalue;
+int peaks[MATRIX_X] = {0};
+int displaycolumn, displayvalue;
+
+int MY_ARRAY[] = {0, 128, 192, 224, 240, 248, 252, 254, 255};
+bool adc_dma_flag = false;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_TIM4_Init(void);
+static void MX_DMA_Init(void);
+static void MX_TIM2_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_ADC1_Init(void);
 /* USER CODE BEGIN PFP */
@@ -66,6 +87,48 @@ static void MX_ADC1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+long map(long x, long in_min, long in_max, long out_min, long out_max)
+{
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
+long constrain(long x, long a, long b)
+{
+  if (x < a)
+    return a;
+  if (x > b)
+    return b;
+  return x;
+}
+
+uint8_t reverse_bits(uint8_t b)
+{
+  b = (b & 0xF0) >> 4 | (b & 0x0F) << 4;
+  b = (b & 0xCC) >> 2 | (b & 0x33) << 2;
+  b = (b & 0xAA) >> 1 | (b & 0x55) << 1;
+  return b;
+}
+#define SAMPLE_RATE 8000 // Hz
+#define FREQ 440         // A4 note
+
+float current_phase = 0.0f; // Global or static to retain between calls
+
+void generate_test_tone()
+{
+  float phase_increment = 2.0f * PI * FREQ / SAMPLE_RATE;
+
+  for (int i = 0; i < FFT_LENGTH; i++)
+  {
+    microphone_input[i] = (uint16_t)(2048 + 2047 * sinf(current_phase));
+    current_phase += phase_increment;
+
+    // Keep phase in range to avoid float overflow
+    if (current_phase >= 2.0f * PI)
+      current_phase -= 2.0f * PI;
+  }
+
+  adc_dma_flag = true; // simulate DMA completion
+}
 
 /* USER CODE END 0 */
 
@@ -75,9 +138,8 @@ static void MX_ADC1_Init(void);
   */
 int main(void)
 {
-
   /* USER CODE BEGIN 1 */
-  char MSG[] = " YO BOI GEX ";
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -86,7 +148,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-  arm_rfft_fast_init_f32(&fft_instance, 10);
+
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -98,12 +160,60 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_TIM4_Init();
+  MX_DMA_Init();
+  MX_TIM2_Init();
   MX_SPI1_Init();
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
-  DOT_MATRIX_Init_TMR(&hspi1, &htim4);
-  MATRIX_DisplayMessage(MATRIX_DISPLAY_UNIT1, MSG, sizeof(MSG));
+  DOT_MATRIX_Init_TMR(&hspi1, &htim2);
+  // MATRIX_DisplayMessage(MATRIX_DISPLAY_UNIT1, MSG, sizeof(MSG));
+  MATRIX_CLEAR(MATRIX_DISPLAY_UNIT1);
+
+  HAL_ADCEx_Calibration_Start(&hadc1);
+  HAL_DMA_Init(&hdma_adc1);
+
+  if (HAL_ADC_Start_DMA(&hadc1, (uint32_t *)microphone_input, FFT_LENGTH) != HAL_OK)
+  {
+    Error_Handler(); // Could help debug DMA misconfig
+  }
+  status_fft = arm_rfft_fast_init_f32(&fft_instance, FFT_LENGTH);
+
+  // for (int i = 0; i < FFT_LENGTH; i++)
+  // {
+  //   input_fft[i] = arm_sin_f32(2 * 3.14159 * 500.0 * i / 16000);
+  // }
+
+  // arm_rfft_fast_f32(&fft_instance, input_fft, output_fft, 0);
+  // arm_cmplx_mag_f32(output_fft, output_fft_mag, FFT_LENGTH / 2);
+
+  // int step = (FFT_LENGTH / 2) / MATRIX_X;
+  // int c = 0;
+  // for (int i = 0; i < (FFT_LENGTH / 2); i += step)
+  // {
+  //   data_avgs[c] = 0;
+  //   for (int k = 0; k < step; k++)
+  //   {
+  //     data_avgs[c] = data_avgs[c] + output_fft_mag[i + k];
+  //   }
+  //   data_avgs[c] = data_avgs[c] / step;
+  //   c++;
+  // }
+
+  // for (int i = 0; i < MATRIX_X; i++)
+  // {
+  //   data_avgs[i] = constrain(data_avgs[i], 0, 80);        // set max & min values for buckets
+  //   data_avgs[i] = map(data_avgs[i], 0, 80, 0, MATRIX_Y); // remap averaged values to yres
+  //   yvalue = data_avgs[i];
+
+  //   peaks[i] = peaks[i] - 1; // decay by one light
+  //   if (yvalue > peaks[i])
+  //     peaks[i] = yvalue;
+  //   yvalue = peaks[i];
+  //   displayvalue = MY_ARRAY[yvalue];
+  //   displaycolumn = 31 - i;
+  //   SET_COLUMN(MATRIX_DISPLAY_UNIT1, displaycolumn, reverse_bits(displayvalue)); // for left to right
+  // }
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -113,10 +223,50 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    HAL_Delay(1000);
-    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
-    HAL_Delay(1000);
-    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
+    // generate_test_tone(); // regenerate test signal each loop
+
+    if (adc_dma_flag)
+    {
+      adc_dma_flag = false;
+
+      // Sample microphone input
+      for (int i = 0; i < FFT_LENGTH; i++)
+      {
+        input_fft[i] = (float32_t)(microphone_input[i]) - 2048.0f; // Center around 0
+      }
+
+      arm_rfft_fast_f32(&fft_instance, input_fft, output_fft, 0);
+
+      arm_cmplx_mag_f32(output_fft, output_fft_mag, FFT_LENGTH / 2);
+
+      int step = (FFT_LENGTH / 2) / MATRIX_X;
+      int c = 0;
+      for (int i = 0; i < (FFT_LENGTH / 2); i += step)
+      {
+        data_avgs[c] = 0;
+        for (int k = 0; k < step; k++)
+        {
+          data_avgs[c] = data_avgs[c] + output_fft_mag[i + k];
+        }
+        data_avgs[c] = data_avgs[c] / step;
+        c++;
+      }
+
+      for (int i = 0; i < MATRIX_X; i++)
+      {
+        data_avgs[i] = constrain(data_avgs[i], 0, 80);        // set max & min values for buckets
+        data_avgs[i] = map(data_avgs[i], 0, 80, 0, MATRIX_Y); // remap averaged values to yres
+        yvalue = data_avgs[i];
+
+        peaks[i] = peaks[i] - 1; // decay by one light
+        if (yvalue > peaks[i])
+          peaks[i] = yvalue;
+        yvalue = peaks[i];
+        displayvalue = MY_ARRAY[yvalue];
+        displaycolumn = 31 - i;
+        SET_COLUMN(MATRIX_DISPLAY_UNIT1, displaycolumn, reverse_bits(displayvalue)); // for left to right
+      }
+    }
   }
   /* USER CODE END 3 */
 }
@@ -160,7 +310,7 @@ void SystemClock_Config(void)
     Error_Handler();
   }
   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
-  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV2;
+  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV6;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();
@@ -189,7 +339,7 @@ static void MX_ADC1_Init(void)
   */
   hadc1.Instance = ADC1;
   hadc1.Init.ScanConvMode = ADC_SCAN_DISABLE;
-  hadc1.Init.ContinuousConvMode = DISABLE;
+  hadc1.Init.ContinuousConvMode = ENABLE;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
@@ -253,47 +403,63 @@ static void MX_SPI1_Init(void)
 }
 
 /**
-  * @brief TIM4 Initialization Function
+  * @brief TIM2 Initialization Function
   * @param None
   * @retval None
   */
-static void MX_TIM4_Init(void)
+static void MX_TIM2_Init(void)
 {
 
-  /* USER CODE BEGIN TIM4_Init 0 */
+  /* USER CODE BEGIN TIM2_Init 0 */
 
-  /* USER CODE END TIM4_Init 0 */
+  /* USER CODE END TIM2_Init 0 */
 
   TIM_ClockConfigTypeDef sClockSourceConfig = {0};
   TIM_MasterConfigTypeDef sMasterConfig = {0};
 
-  /* USER CODE BEGIN TIM4_Init 1 */
+  /* USER CODE BEGIN TIM2_Init 1 */
 
-  /* USER CODE END TIM4_Init 1 */
-  htim4.Instance = TIM4;
-  htim4.Init.Prescaler = 0;
-  htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim4.Init.Period = 65535;
-  htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_Base_Init(&htim4) != HAL_OK)
+  /* USER CODE END TIM2_Init 1 */
+  htim2.Instance = TIM2;
+  htim2.Init.Prescaler = 0;
+  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim2.Init.Period = 65535;
+  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
   {
     Error_Handler();
   }
   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim4, &sClockSourceConfig) != HAL_OK)
+  if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
   {
     Error_Handler();
   }
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim4, &sMasterConfig) != HAL_OK)
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN TIM4_Init 2 */
+  /* USER CODE BEGIN TIM2_Init 2 */
 
-  /* USER CODE END TIM4_Init 2 */
+  /* USER CODE END TIM2_Init 2 */
+
+}
+
+/**
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void)
+{
+
+  /* DMA controller clock enable */
+  __HAL_RCC_DMA1_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  /* DMA1_Channel1_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
 
 }
 
@@ -305,21 +471,16 @@ static void MX_TIM4_Init(void)
 static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
-  /* USER CODE BEGIN MX_GPIO_Init_1 */
-
-  /* USER CODE END MX_GPIO_Init_1 */
+/* USER CODE BEGIN MX_GPIO_Init_1 */
+/* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
-  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : PC13 */
   GPIO_InitStruct.Pin = GPIO_PIN_13;
@@ -328,19 +489,20 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PB0 */
-  GPIO_InitStruct.Pin = GPIO_PIN_0;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-  /* USER CODE BEGIN MX_GPIO_Init_2 */
-
-  /* USER CODE END MX_GPIO_Init_2 */
+/* USER CODE BEGIN MX_GPIO_Init_2 */
+/* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc)
+{
+  adc_dma_flag = true;
+}
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
+{
+  adc_dma_flag = true;
+}
+
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   MATRIX_TMR_OVF_ISR(htim);

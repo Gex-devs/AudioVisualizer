@@ -1,6 +1,12 @@
 {
     "files.associations": {
-        "dot_matrix.h": "c"
+        "dot_matrix.h": "c",
+        "arm_math.h": "c",
+        "stdbool.h": "c",
+        "basic_math_functions.h": "c",
+        "arm_common_tables.h": "c",
+        "fast_math_functions.h": "c",
+        "arm_math_types.h": "c"
     },
     "cortex-debug.gdbPath": "gdb-multiarch", 
     "makefile.extensionOutputFolder": "./.vscode",

@@ -1,3 +1,7 @@
 build
+Core/Inc
 Drivers
+EWARM
+FATFS
 Middlewares
+USB_DEVICE
