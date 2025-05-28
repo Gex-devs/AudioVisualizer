@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Apr 21 00:47:51 2025
+# Make data base, printed on Wed May 28 21:41:25 2025
 
 # Variables
 
@@ -85,6 +85,7 @@ XDG_SESSION_TYPE = tty
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # makefile (from 'Makefile', line 129)
+ 
 AS_INCLUDES = 
 # makefile (from 'Makefile', line 97)
 CP = $(PREFIX)objcopy
@@ -97,9 +98,9 @@ SSL_CERT_DIR = /usr/lib/ssl/certs
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # environment
-VSCODE_CLI_REQUIRE_TOKEN = 9a6875d9-d896-4fd3-a66d-d40274fc6ae5
+VSCODE_CLI_REQUIRE_TOKEN = 7cd9992b-5c5e-4149-ac3e-26fd68a152d6
 # environment
-VSCODE_NLS_CONFIG = {"userLocale":"en","osLocale":"en","resolvedLanguage":"en","defaultMessagesFile":"/home/gex/.vscode-server/cli/servers/Stable-17baf841131aa23349f217ca7c570c76ee87b957/server/out/nls.messages.json","locale":"en","availableLanguages":{}}
+VSCODE_NLS_CONFIG = {"userLocale":"en","osLocale":"en","resolvedLanguage":"en","defaultMessagesFile":"/home/gex/.vscode-server/cli/servers/Stable-848b80aeb52026648a8ff9f7c45a9b0a80641e2e/server/out/nls.messages.json","locale":"en","availableLanguages":{}}
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # makefile
@@ -113,7 +114,7 @@ MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-PATH = /home/gex/.vscode-server/cli/servers/Stable-17baf841131aa23349f217ca7c570c76ee87b957/server/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+PATH = /home/gex/.vscode-server/cli/servers/Stable-848b80aeb52026648a8ff9f7c45a9b0a80641e2e/server/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 # default
 MAKEFILES := 
 # environment
@@ -121,7 +122,7 @@ MOTD_SHOWN = pam
 # automatic
 ^F = $(notdir $^)
 # environment
-SSH_CLIENT = 192.168.0.146 64189 22
+SSH_CLIENT = 192.168.0.146 54117 22
 # makefile (from 'Makefile', line 86)
 PREFIX = arm-none-eabi-
 # makefile (from 'Makefile', line 107)
@@ -135,7 +136,7 @@ OBJECTS = $(addprefix $(BUILD_DIR)/,$(notdir $(C_SOURCES:.c=.o))) $(addprefix $(
 # 'override' directive
 GNUMAKEFLAGS := 
 # environment
-BROWSER = /home/gex/.vscode-server/cli/servers/Stable-17baf841131aa23349f217ca7c570c76ee87b957/server/bin/helpers/browser.sh
+BROWSER = /home/gex/.vscode-server/cli/servers/Stable-848b80aeb52026648a8ff9f7c45a9b0a80641e2e/server/bin/helpers/browser.sh
 # environment
 LOGNAME = gex
 # makefile (from 'Makefile', line 25)
@@ -154,13 +155,12 @@ MCU = $(CPU) -mthumb $(FPU) $(FLOAT-ABI)
 VSCODE_AGENT_FOLDER = /home/gex/.vscode-server
 # makefile (from 'Makefile', line 101)
 BIN = $(CP) -O binary -S
- 
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # makefile (from 'Makefile', line 152)
 CFLAGS = $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections -g -gdwarf-2 -MMD -MP -MF"$(@:%.o=%.d)"
 # environment
-VSCODE_IPC_HOOK_CLI = /run/user/1000/vscode-ipc-3bef110e-3688-411f-abff-08d81e11cb4a.sock
+VSCODE_IPC_HOOK_CLI = /run/user/1000/vscode-ipc-1f947469-364d-4ea6-82dd-1009e1f62254.sock
 # environment
 XDG_SESSION_CLASS = user
 # makefile (from 'Makefile', line 32)
@@ -170,7 +170,7 @@ HOME = /home/gex
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-XDG_SESSION_ID = 396
+XDG_SESSION_ID = 1434
 # default
 .RECIPEPREFIX := 
 # automatic
@@ -192,7 +192,7 @@ CC = $(PREFIX)gcc
 # environment
 VSCODE_ESM_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-SSH_CONNECTION = 192.168.0.146 64189 192.168.0.103 22
+SSH_CONNECTION = 192.168.0.146 54117 192.168.0.103 22
 # variable set hash-table stats:
 # Load=91/1024=9%, Rehash=0, Collisions=3/297=1%
 
@@ -204,31 +204,27 @@ SSH_CONNECTION = 192.168.0.146 64189 192.168.0.103 22
 
 # Core/Src//FastMathFunctions (device 45827, inode 1971702): 28 files, no impossibilities.
 # Core/Src//BayesFunctions (device 45827, inode 1971601): 7 files, no impossibilities.
- 
 # Core/Src//QuaternionMathFunctions (device 45827, inode 1971937): 12 files, no impossibilities.
 # Core/Src//CommonTables (device 45827, inode 1971607): 13 files, no impossibilities.
 # Core/Src//BasicMathFunctions (device 45827, inode 1971529): 73 files, no impossibilities.
 # Core/Src//ControllerFunctions (device 45827, inode 1971651): 12 files, no impossibilities.
 # Core/Src//ComplexMathFunctions (device 45827, inode 1971619): 33 files, no impossibilities.
+ 
 # Core/Src//FilteringFunctions (device 45827, inode 1971729): 121 files, no impossibilities.
 # Core/Src//WindowFunctions (device 45827, inode 1972175): 44 files, no impossibilities.
 # Core/Src//StatisticsFunctions (device 45827, inode 1971948): 98 files, no impossibilities.
 # build (device 45827, inode 1969462): 216 files, no impossibilities.
- 
-# . (device 45827, inode 1723599): 20 files, no impossibilities.
+# . (device 45827, inode 1723599): 22 files, no impossibilities.
 # Core/Src//TransformFunctions (device 45827, inode 1972121): 55 files, no impossibilities.
 # Core/Src (device 45827, inode 1971520): 26 files, no impossibilities.
- 
 # Core/Src//DistanceFunctions (device 45827, inode 1971662): 41 files, no impossibilities.
 # Core/Src//InterpolationFunctions (device 45827, inode 1971849): 17 files, no impossibilities.
 # Drivers/STM32F1xx_HAL_Driver/Src (device 45827, inode 1973203): 63 files, no impossibilities.
- 
 # Core/Src//SVMFunctions (device 45827, inode 1972101): 21 files, no impossibilities.
 # Core/Src//SupportFunctions (device 45827, inode 1972045): 57 files, no impossibilities.
 # Core/Src//MatrixFunctions (device 45827, inode 1971865): 73 files, no impossibilities.
 
-# 1030 files, no impossibilities in 20 directories.
- 
+# 1032 files, no impossibilities in 20 directories.
 
 # Implicit Rules
 
@@ -251,7 +247,6 @@ build/%.bin: build/%.elf | build
 	
 
 # 4 implicit rules, 0 (0.0%) terminal.
- 
 # Files
 
 # Not a target:
@@ -269,7 +264,6 @@ Core/Src//MatrixFunctions/arm_mat_scale_f32.c:
 Core/Src//MatrixFunctions/arm_mat_cmplx_mult_q31.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:59.6978778
- 
 #  File has been updated.
 #  Successfully updated.
 
@@ -286,7 +280,6 @@ build/BayesFunctions.o: Core/Src//BayesFunctions/BayesFunctions.c Makefile Core/
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 181):
- 
 	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
 
 # Not a target:
@@ -303,7 +296,6 @@ Core/Src//TransformFunctions/arm_cfft_radix4_f32.c:
 
 Core/Src//ComplexMathFunctions/arm_cmplx_dot_prod_q15.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:00:58.58287
 #  File has been updated.
 #  Successfully updated.
@@ -319,9 +311,9 @@ USB_DEVICE/App/usbd_desc.h:
 #  File has not been updated.
 
 Core/Src//WindowFunctions/arm_hft144d_f64.c:
+ 
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.8068856
- 
 #  File has been updated.
 #  Successfully updated.
 
@@ -339,7 +331,6 @@ Core/Inc/dsp/bayes_functions.h:
 
 Core/Src//FastMathFunctions/arm_divide_q31.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:00:59.1308738
 #  File has been updated.
 #  Successfully updated.
@@ -355,7 +346,6 @@ Core/Src//BasicMathFunctions/arm_dot_prod_q7.c:
 #  Last modified 2025-04-12 16:00:58.1438669
 #  File has been updated.
 #  Successfully updated.
- 
 
 Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h:
 #  Implicit rule search has been done.
@@ -596,6 +586,7 @@ USB_DEVICE/App/usbd_cdc_if.h:
 
 Core/Src//FastMathFunctions/arm_cos_q31.c:
 #  Implicit rule search has been done.
+ 
 #  Last modified 2025-04-12 16:00:59.1308738
 #  File has been updated.
 #  Successfully updated.
@@ -629,7 +620,6 @@ Core/Src//StatisticsFunctions/arm_std_q15.c:
 #  Last modified 2025-04-12 16:01:00.1168808
 #  File has been updated.
 #  Successfully updated.
- 
 
 Core/Src//DistanceFunctions/arm_cosine_distance_f32.c:
 #  Implicit rule search has been done.
@@ -820,6 +810,7 @@ build/freertos.o: Core/Src/freertos.c Middlewares/Third_Party/FreeRTOS/Source/in
 # Not a target:
 Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c:
 #  Implicit rule search has not been done.
+ 
 #  Modification time never checked.
 #  File has not been updated.
 
@@ -892,7 +883,6 @@ Core/Inc/arm_common_tables.h:
 
 Core/Src//DistanceFunctions/arm_correlation_distance_f32.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:00:58.9108723
 #  File has been updated.
 #  Successfully updated.
@@ -968,7 +958,6 @@ Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h:
 
 Core/Src//TransformFunctions/arm_mfcc_init_f32.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:01:00.6268844
 #  File has been updated.
 #  Successfully updated.
@@ -1017,7 +1006,6 @@ Core/Src//TransformFunctions/arm_cfft_radix2_init_q31.c:
 
 build/stm32f1xx_hal_cortex.o: Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c Makefile Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h Core/Inc/stm32f1xx_hal_conf.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h Drivers/CMSIS/Include/core_cm3.h Drivers/CMSIS/Include/cmsis_version.h Drivers/CMSIS/Include/cmsis_compiler.h Drivers/CMSIS/Include/cmsis_gcc.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h | build
 #  Implicit rule search has been done.
- 
 #  Implicit/static pattern stem: 'stm32f1xx_hal_cortex'
 #  Last modified 2025-04-21 00:32:25.498353812
 #  File has been updated.
@@ -1037,6 +1025,7 @@ Core/Src//StatisticsFunctions/arm_var_f64.c:
 #  File has been updated.
 #  Successfully updated.
 
+ 
 Core/Src//StatisticsFunctions/arm_var_q15.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.1258808
@@ -1069,7 +1058,6 @@ Core/Src//WindowFunctions/arm_hanning_f32.c:
 #  Last modified 2025-04-12 16:01:00.8048856
 #  File has been updated.
 #  Successfully updated.
- 
 
 Core/Src//BasicMathFunctions/arm_abs_q31.c:
 #  Implicit rule search has been done.
@@ -1132,7 +1120,6 @@ Core/Src//TransformFunctions/arm_rfft_fast_f64.c:
 #  File has been updated.
 #  Successfully updated.
 
- 
 Core/Src//MatrixFunctions/arm_mat_sub_q31.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:59.7458782
@@ -1179,6 +1166,7 @@ Core/Src//BasicMathFunctions/arm_xor_u16.c:
 #  File has been updated.
 #  Successfully updated.
 
+ 
 # Not a target:
 build/stm32f1xx_hal_rtc.d:
 #  Implicit rule search has been done.
@@ -1213,7 +1201,6 @@ Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c:
 #  File has been updated.
 #  Successfully updated.
 
- 
 build/usbd_core.o: Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h USB_DEVICE/Target/usbd_conf.h Core/Inc/main.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h Core/Inc/stm32f1xx_hal_conf.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h Drivers/CMSIS/Include/core_cm3.h Drivers/CMSIS/Include/cmsis_version.h Drivers/CMSIS/Include/cmsis_compiler.h Drivers/CMSIS/Include/cmsis_gcc.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usb.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd_ex.h Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -1251,11 +1238,11 @@ Core/Src//FastMathFunctions/arm_atan2_f32.c:
 #  Successfully updated.
 
 Core/Src//FilteringFunctions/arm_correlate_fast_opt_q15.c:
+ 
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:59.2468746
 #  File has been updated.
 #  Successfully updated.
- 
 
 # Not a target:
 build/stm32f1xx_hal_spi.d:
@@ -1292,6 +1279,7 @@ Core/Src//InterpolationFunctions/arm_linear_interp_q15.c:
 
 Core/Src//MatrixFunctions/arm_mat_vec_mult_q31.c:
 #  Implicit rule search has been done.
+ 
 #  Last modified 2025-04-12 16:00:59.7588782
 #  File has been updated.
 #  Successfully updated.
@@ -1307,7 +1295,6 @@ Core/Src//FilteringFunctions/arm_correlate_q7.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:59.2508747
 #  File has been updated.
- 
 #  Successfully updated.
 
 Core/Src//MatrixFunctions/arm_mat_add_q31.c:
@@ -1327,6 +1314,7 @@ build/InterpolationFunctions.o: Core/Src//InterpolationFunctions/InterpolationFu
 
 Core/Src//StatisticsFunctions/arm_max_no_idx_q15.c:
 #  Implicit rule search has been done.
+ 
 #  Last modified 2025-04-12 16:01:00.0688804
 #  File has been updated.
 #  Successfully updated.
@@ -1346,7 +1334,6 @@ build/ComplexMathFunctions.d:
 
 Core/Src//StatisticsFunctions/arm_max_no_idx_q31.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:01:00.0688804
 #  File has been updated.
 #  Successfully updated.
@@ -1403,6 +1390,7 @@ Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h:
 
 Core/Src//WindowFunctions/arm_nuttall4_f32.c:
 #  Implicit rule search has been done.
+ 
 #  Last modified 2025-04-12 16:01:00.8378858
 #  File has been updated.
 #  Successfully updated.
@@ -1410,7 +1398,6 @@ Core/Src//WindowFunctions/arm_nuttall4_f32.c:
 # Not a target:
 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c:
 #  Implicit rule search has not been done.
- 
 #  Modification time never checked.
 #  File has not been updated.
 
@@ -1488,10 +1475,10 @@ Core/Src//FilteringFunctions/arm_iir_lattice_q31.c:
 
 Core/Src//FilteringFunctions/arm_correlate_f64.c:
 #  Implicit rule search has been done.
+ 
 #  Last modified 2025-04-12 16:00:59.2468746
 #  File has been updated.
 #  Successfully updated.
- 
 
 build/stm32f1xx_hal_pcd.o: Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pcd.c Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h Core/Inc/stm32f1xx_hal_conf.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h Drivers/CMSIS/Include/core_cm3.h Drivers/CMSIS/Include/cmsis_version.h Drivers/CMSIS/Include/cmsis_compiler.h Drivers/CMSIS/Include/cmsis_gcc.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usb.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd_ex.h
 #  Implicit rule search has not been done.
@@ -1517,7 +1504,6 @@ Core/Src//ComplexMathFunctions/arm_cmplx_dot_prod_f32.c:
 #  Successfully updated.
 
 # Not a target:
- 
 build/StatisticsFunctions.d:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-21 00:32:38.440393502
@@ -1577,12 +1563,12 @@ Core/Src//FilteringFunctions/arm_fir_init_q7.c:
 #  Last modified 2025-04-12 16:00:59.2598747
 #  File has been updated.
 #  Successfully updated.
+ 
 
 Core/Src//InterpolationFunctions/arm_bilinear_interp_q15.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:59.5208766
 #  File has been updated.
- 
 #  Successfully updated.
 
 # Not a target:
@@ -1612,7 +1598,6 @@ Core/Src//QuaternionMathFunctions/arm_quaternion_product_f32.c:
 
 Core/Src//StatisticsFunctions/arm_min_f32.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:01:00.0858805
 #  File has been updated.
 #  Successfully updated.
@@ -1621,7 +1606,6 @@ Core/Src//WindowFunctions/arm_hft196d_f64.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.8108856
 #  File has been updated.
- 
 #  Successfully updated.
 
 Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
@@ -1643,6 +1627,7 @@ Core/Src//BasicMathFunctions/arm_offset_f32.c:
 
 Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h:
 #  Implicit rule search has been done.
+ 
 #  Last modified 2025-04-07 12:30:41.6171496
 #  File has been updated.
 #  Successfully updated.
@@ -1686,7 +1671,6 @@ Middlewares/Third_Party/FreeRTOS/Source/queue.c:
 #  Modification time never checked.
 #  File has not been updated.
 
- 
 build/stm32f1xx_hal_i2c.o: Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h Core/Inc/stm32f1xx_hal_conf.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h Drivers/CMSIS/Include/core_cm3.h Drivers/CMSIS/Include/cmsis_version.h Drivers/CMSIS/Include/cmsis_compiler.h Drivers/CMSIS/Include/cmsis_gcc.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usb.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd_ex.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -1721,6 +1705,7 @@ Core/Src//StatisticsFunctions/arm_mean_f64.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.0778805
 #  File has been updated.
+ 
 #  Successfully updated.
 
 Core/Src//TransformFunctions/arm_cfft_radix2_q15.c:
@@ -1763,7 +1748,6 @@ build/stm32f1xx_hal_tim.o: Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c 
 	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
 
 # Not a target:
- 
 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -1831,11 +1815,11 @@ Core/Src//BasicMathFunctions/arm_negate_q31.c:
 
 Core/Src//BayesFunctions/arm_gaussian_naive_bayes_predict_f32.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:00:58.304868
 #  File has been updated.
 #  Successfully updated.
 
+ 
 Core/Src//TransformFunctions/arm_rfft_q15.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.6358844
@@ -1893,7 +1877,6 @@ Core/Src//BasicMathFunctions/arm_add_q15.c:
 
 Core/Inc/dsp/none.h:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:00:41.6937512
 #  File has been updated.
 #  Successfully updated.
@@ -1921,6 +1904,7 @@ Core/Src//DistanceFunctions/arm_braycurtis_distance_f32.c:
 
 Core/Src//MatrixFunctions/arm_mat_qr_f64.c:
 #  Implicit rule search has been done.
+ 
 #  Last modified 2025-04-12 16:00:59.728878
 #  File has been updated.
 #  Successfully updated.
@@ -1945,7 +1929,6 @@ Core/Src//SupportFunctions/arm_q7_to_f64.c:
 
 Core/Src//FilteringFunctions/arm_correlate_fast_q15.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:00:59.2478746
 #  File has been updated.
 #  Successfully updated.
@@ -1992,6 +1975,7 @@ Core/Src//TransformFunctions/arm_cfft_q15.c:
 #  Successfully updated.
 
 build/stm32f1xx_hal_rtc.o: Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rtc.c Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h Core/Inc/stm32f1xx_hal_conf.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h Drivers/CMSIS/Include/core_cm3.h Drivers/CMSIS/Include/cmsis_version.h Drivers/CMSIS/Include/cmsis_compiler.h Drivers/CMSIS/Include/cmsis_gcc.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usb.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd_ex.h
+ 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -2015,7 +1999,6 @@ Core/Src//MatrixFunctions/arm_mat_mult_opt_q31.c:
 #  Successfully updated.
 
 # Not a target:
- 
 Core/Src/DOT_MATRIX_cfg.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-13 20:42:50.7217351
@@ -2074,12 +2057,10 @@ Core/Src//FilteringFunctions/arm_fir_q7.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:59.2708748
 #  File has been updated.
- 
 #  Successfully updated.
 
 Core/Src//BasicMathFunctions/arm_xor_u8.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:00:58.1998673
 #  File has been updated.
 #  Successfully updated.
@@ -2091,7 +2072,6 @@ Core/Src//BasicMathFunctions/BasicMathFunctions.c:
 #  File has been updated.
 #  Successfully updated.
 
- 
 Core/Src//BasicMathFunctions/arm_and_u32.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:58.1328668
@@ -2101,7 +2081,6 @@ Core/Src//BasicMathFunctions/arm_and_u32.c:
 Core/Src//DistanceFunctions/arm_euclidean_distance_f32.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:58.9278724
- 
 #  File has been updated.
 #  Successfully updated.
 
@@ -2116,7 +2095,6 @@ Core/Src//MatrixFunctions/arm_householder_f64.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:59.6858777
 #  File has been updated.
- 
 #  Successfully updated.
 
 Core/Src//SVMFunctions/arm_svm_linear_predict_f32.c:
@@ -2132,7 +2110,6 @@ Core/Src//TransformFunctions/arm_mfcc_f32.c:
 #  Successfully updated.
 
 Core/Src//MatrixFunctions/arm_mat_cholesky_f64.c:
- 
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:59.6928778
 #  File has been updated.
@@ -2147,7 +2124,6 @@ build/ff.d:
 
 build/stm32f1xx_hal_rcc_ex.o: Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c Makefile Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h Core/Inc/stm32f1xx_hal_conf.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h Drivers/CMSIS/Include/core_cm3.h Drivers/CMSIS/Include/cmsis_version.h Drivers/CMSIS/Include/cmsis_compiler.h Drivers/CMSIS/Include/cmsis_gcc.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h | build
 #  Implicit rule search has been done.
- 
 #  Implicit/static pattern stem: 'stm32f1xx_hal_rcc_ex'
 #  Last modified 2025-04-21 00:32:24.820351733
 #  File has been updated.
@@ -2164,7 +2140,6 @@ clean:
 
 Core/Src//MatrixFunctions/arm_mat_mult_f64.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:00:59.7148779
 #  File has been updated.
 #  Successfully updated.
@@ -2179,7 +2154,6 @@ Core/Src//BasicMathFunctions/arm_or_u8.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:58.1768671
 #  File has been updated.
- 
 #  Successfully updated.
 
 Core/Src//StatisticsFunctions/arm_std_f64.c:
@@ -2193,7 +2167,6 @@ Core/Src//SupportFunctions/arm_fill_q31.c:
 #  Last modified 2025-04-12 16:01:00.2748819
 #  File has been updated.
 #  Successfully updated.
- 
 
 Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h:
 #  Implicit rule search has not been done.
@@ -2236,7 +2209,6 @@ Core/Inc/DOT_MATRIX.h:
 Core/Src//FilteringFunctions/arm_correlate_opt_q7.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:59.2488747
- 
 #  File has been updated.
 #  Successfully updated.
 
@@ -2282,6 +2254,7 @@ USB_DEVICE/Target/usbd_conf.h:
 #  Modification time never checked.
 #  File has not been updated.
 
+ 
 # Not a target:
 build/diskio.d:
 #  Implicit rule search has been done.
@@ -2299,7 +2272,6 @@ Core/Inc/dsp/svm_defines.h:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:41.6987512
 #  File has been updated.
- 
 #  Successfully updated.
 
 # Not a target:
@@ -2359,7 +2331,6 @@ Core/Src//BasicMathFunctions/arm_clip_q15.c:
 
 Core/Src//WindowFunctions/arm_hft95_f32.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:01:00.8138857
 #  File has been updated.
 #  Successfully updated.
@@ -2423,7 +2394,6 @@ Core/Src//DistanceFunctions/arm_dtw_init_window_q7.c:
 #  File has been updated.
 #  Successfully updated.
 
- 
 Core/Src//MatrixFunctions/arm_mat_cmplx_mult_q15.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:59.6958778
@@ -2457,7 +2427,6 @@ Core/Src//StatisticsFunctions/arm_mse_f64.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.0968806
 #  File has been updated.
- 
 #  Successfully updated.
 
 Core/Src//DistanceFunctions/arm_hamming_distance.c:
@@ -2510,7 +2479,6 @@ build/FastMathFunctions.o: Core/Src//FastMathFunctions/FastMathFunctions.c Makef
 #  recipe to execute (from 'Makefile', line 181):
 	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
 
- 
 Core/Src//MatrixFunctions/arm_mat_vec_mult_q7.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:59.7598783
@@ -2552,6 +2520,7 @@ Core/Src//SVMFunctions/SVMFunctions.c:
 #  Successfully updated.
 
 # Not a target:
+ 
 build/SupportFunctions.d:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-21 00:32:37.826391619
@@ -2628,7 +2597,6 @@ Core/Src//MatrixFunctions/arm_mat_ldlt_f64.c:
 
 Core/Src//StatisticsFunctions/arm_entropy_f64.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:01:00.0558803
 #  File has been updated.
 #  Successfully updated.
@@ -2705,7 +2673,6 @@ Core/Src//BasicMathFunctions/arm_clip_q7.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:58.1388668
 #  File has been updated.
- 
 #  Successfully updated.
 
 Middlewares/Third_Party/FreeRTOS/Source/include/portable.h:
@@ -2772,7 +2739,6 @@ Core/Src//WindowFunctions/arm_hft90d_f32.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.8128857
 #  File has been updated.
- 
 #  Successfully updated.
 
 Core/Src//BasicMathFunctions/arm_clip_q31.c:
@@ -2819,7 +2785,6 @@ Core/Src//MatrixFunctions/arm_mat_inverse_f32.c:
 
 Core/Src//MatrixFunctions/arm_mat_ldlt_f32.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:00:59.7088779
 #  File has been updated.
 #  Successfully updated.
@@ -2828,6 +2793,7 @@ Core/Src//SupportFunctions/arm_q31_to_float.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.3058821
 #  File has been updated.
+ 
 #  Successfully updated.
 
 Core/Src//FilteringFunctions/arm_lms_f32.c:
@@ -2866,7 +2832,6 @@ Core/Src//FilteringFunctions/arm_biquad_cascade_df1_q15.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:59.2258745
 #  File has been updated.
- 
 #  Successfully updated.
 
 # Not a target:
@@ -2975,6 +2940,7 @@ Core/Src//StatisticsFunctions/arm_absmin_q15.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.0478803
 #  File has been updated.
+ 
 #  Successfully updated.
 
 Core/Src//MatrixFunctions/arm_mat_sub_f32.c:
@@ -3043,6 +3009,7 @@ Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h:
 #  File has not been updated.
 
 build/ff_gen_drv.o: Middlewares/Third_Party/FatFs/src/ff_gen_drv.c Middlewares/Third_Party/FatFs/src/ff_gen_drv.h Middlewares/Third_Party/FatFs/src/diskio.h Middlewares/Third_Party/FatFs/src/integer.h Middlewares/Third_Party/FatFs/src/ff.h FATFS/Target/ffconf.h Core/Inc/main.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h Core/Inc/stm32f1xx_hal_conf.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h Drivers/CMSIS/Include/core_cm3.h Drivers/CMSIS/Include/cmsis_version.h Drivers/CMSIS/Include/cmsis_compiler.h Drivers/CMSIS/Include/cmsis_gcc.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usb.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd_ex.h Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h Core/Inc/FreeRTOSConfig.h Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h Middlewares/Third_Party/FreeRTOS/Source/include/portable.h Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h Middlewares/Third_Party/FreeRTOS/Source/include/task.h Middlewares/Third_Party/FreeRTOS/Source/include/list.h Middlewares/Third_Party/FreeRTOS/Source/include/timers.h Middlewares/Third_Party/FreeRTOS/Source/include/task.h Middlewares/Third_Party/FreeRTOS/Source/include/queue.h Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h Middlewares/Third_Party/FreeRTOS/Source/include/queue.h Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
+ 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -3126,7 +3093,6 @@ Core/Src//MatrixFunctions/arm_mat_mult_fast_q15.c:
 build/WindowFunctions.o: Core/Src//WindowFunctions/WindowFunctions.c Makefile Core/Src//WindowFunctions/WindowFunctions.c Core/Src//WindowFunctions/arm_welch_f32.c Core/Inc/dsp/window_functions.h Core/Inc/arm_math_types.h Drivers/CMSIS/Include/cmsis_compiler.h Drivers/CMSIS/Include/cmsis_gcc.h Core/Inc/arm_math_memory.h Core/Inc/arm_math_types.h Core/Inc/dsp/none.h Core/Inc/dsp/utils.h Core/Src//WindowFunctions/arm_welch_f64.c Core/Src//WindowFunctions/arm_bartlett_f32.c Core/Src//WindowFunctions/arm_bartlett_f64.c Core/Src//WindowFunctions/arm_hamming_f32.c Core/Inc/dsp/fast_math_functions.h Core/Inc/dsp/basic_math_functions.h Core/Src//WindowFunctions/arm_hamming_f64.c Core/Src//WindowFunctions/arm_hanning_f32.c Core/Src//WindowFunctions/arm_hanning_f64.c Core/Src//WindowFunctions/arm_nuttall3_f32.c Core/Src//WindowFunctions/arm_nuttall3_f64.c Core/Src//WindowFunctions/arm_nuttall4_f32.c Core/Src//WindowFunctions/arm_nuttall4_f64.c Core/Src//WindowFunctions/arm_nuttall3a_f32.c Core/Src//WindowFunctions/arm_nuttall3a_f64.c Core/Src//WindowFunctions/arm_nuttall3b_f32.c Core/Src//WindowFunctions/arm_nuttall3b_f64.c Core/Src//WindowFunctions/arm_nuttall4a_f32.c Core/Src//WindowFunctions/arm_nuttall4a_f64.c Core/Src//WindowFunctions/arm_blackman_harris_92db_f32.c Core/Src//WindowFunctions/arm_blackman_harris_92db_f64.c Core/Src//WindowFunctions/arm_nuttall4b_f32.c Core/Src//WindowFunctions/arm_nuttall4b_f64.c Core/Src//WindowFunctions/arm_nuttall4c_f32.c Core/Src//WindowFunctions/arm_nuttall4c_f64.c Core/Src//WindowFunctions/arm_hft90d_f32.c Core/Src//WindowFunctions/arm_hft90d_f64.c Core/Src//WindowFunctions/arm_hft95_f32.c Core/Src//WindowFunctions/arm_hft95_f64.c Core/Src//WindowFunctions/arm_hft116d_f32.c Core/Src//WindowFunctions/arm_hft116d_f64.c Core/Src//WindowFunctions/arm_hft144d_f32.c Core/Src//WindowFunctions/arm_hft144d_f64.c Core/Src//WindowFunctions/arm_hft169d_f32.c Core/Src//WindowFunctions/arm_hft169d_f64.c Core/Src//WindowFunctions/arm_hft196d_f32.c Core/Src//WindowFunctions/arm_hft196d_f64.c Core/Src//WindowFunctions/arm_hft223d_f32.c Core/Src//WindowFunctions/arm_hft223d_f64.c Core/Src//WindowFunctions/arm_hft248d_f32.c Core/Src//WindowFunctions/arm_hft248d_f64.c | build
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'WindowFunctions'
- 
 #  Last modified 2025-04-21 00:32:39.617397112
 #  File has been updated.
 #  Successfully updated.
@@ -3174,7 +3140,6 @@ Core/Src//CommonTables/arm_common_tables.c:
 
 Core/Src//FilteringFunctions/arm_conv_partial_opt_q15.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:00:59.2418746
 #  File has been updated.
 #  Successfully updated.
@@ -3192,6 +3157,7 @@ Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h:
 
 Core/Src//FilteringFunctions/arm_fir_interpolate_init_q31.c:
 #  Implicit rule search has been done.
+ 
 #  Last modified 2025-04-12 16:00:59.2618747
 #  File has been updated.
 #  Successfully updated.
@@ -3235,7 +3201,6 @@ Middlewares/Third_Party/FatFs/src/option/syscall.c:
 #  Modification time never checked.
 #  File has not been updated.
 
- 
 build/usbd_conf.o: USB_DEVICE/Target/usbd_conf.c Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h Drivers/CMSIS/Include/core_cm3.h Drivers/CMSIS/Include/cmsis_version.h Drivers/CMSIS/Include/cmsis_compiler.h Drivers/CMSIS/Include/cmsis_gcc.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h Core/Inc/stm32f1xx_hal_conf.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usb.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd_ex.h Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h USB_DEVICE/Target/usbd_conf.h Core/Inc/main.h Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -3332,6 +3297,7 @@ Core/Src//FilteringFunctions/arm_fir_decimate_q15.c:
 Core/Src//WindowFunctions/arm_nuttall3b_f32.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.8338858
+ 
 #  File has been updated.
 #  Successfully updated.
 
@@ -3415,7 +3381,6 @@ Core/Src//QuaternionMathFunctions/arm_rotation2quaternion_f32.c:
 #  File has been updated.
 #  Successfully updated.
 
- 
 Core/Src//MatrixFunctions/arm_mat_sub_f64.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:59.7448781
@@ -3465,6 +3430,7 @@ Core/Src//FilteringFunctions/arm_correlate_q31.c:
 build/stm32f1xx_hal_adc_ex.o: Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc_ex.c Makefile Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc_ex.c Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h Core/Inc/stm32f1xx_hal_conf.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h Drivers/CMSIS/Include/core_cm3.h Drivers/CMSIS/Include/cmsis_version.h Drivers/CMSIS/Include/cmsis_compiler.h Drivers/CMSIS/Include/cmsis_gcc.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h | build
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'stm32f1xx_hal_adc_ex'
+ 
 #  Last modified 2025-04-21 00:32:30.908370403
 #  File has been updated.
 #  Successfully updated.
@@ -3506,7 +3472,6 @@ build:
 
 Core/Src//QuaternionMathFunctions/arm_quaternion_norm_f32.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:00:59.8878792
 #  File has been updated.
 #  Successfully updated.
@@ -3536,6 +3501,7 @@ Core/Src//FilteringFunctions/arm_fir_lattice_init_q31.c:
 
 # Not a target:
 build/usbd_cdc.d:
+ 
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 15:04:05.8313399
 #  File has been updated.
@@ -3560,7 +3526,6 @@ Core/Src//FilteringFunctions/arm_lms_q31.c:
 
 Core/Src//MatrixFunctions/arm_mat_init_f64.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:00:59.7028779
 #  File has been updated.
 #  Successfully updated.
@@ -3595,6 +3560,7 @@ Middlewares/Third_Party/FatFs/src/ff.h:
 #  Modification time never checked.
 #  File has not been updated.
 
+ 
 Core/Src//StatisticsFunctions/arm_absmax_q7.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.0318802
@@ -3615,7 +3581,6 @@ Core/Inc/stm32f1xx_hal_conf.h:
 
 Core/Src//TransformFunctions/arm_bitreversal.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:01:00.5938841
 #  File has been updated.
 #  Successfully updated.
@@ -3664,7 +3629,6 @@ build/stm32f1xx_hal_exti.d:
 build/user_diskio.d:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 15:04:05.7533396
- 
 #  File has been updated.
 #  Successfully updated.
 
@@ -3677,6 +3641,7 @@ build/WindowFunctions.d:
 
 Core/Src//StatisticsFunctions/arm_power_q7.c:
 #  Implicit rule search has been done.
+ 
 #  Last modified 2025-04-12 16:01:00.1058807
 #  File has been updated.
 #  Successfully updated.
@@ -3691,7 +3656,6 @@ Core/Src//WindowFunctions/arm_nuttall3a_f64.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.8308858
 #  File has been updated.
- 
 #  Successfully updated.
 
 Core/Src//TransformFunctions/arm_bitreversal2.c:
@@ -3702,7 +3666,6 @@ Core/Src//TransformFunctions/arm_bitreversal2.c:
 
 Core/Src//FilteringFunctions/arm_conv_fast_opt_q15.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:00:59.2378746
 #  File has been updated.
 #  Successfully updated.
@@ -3717,7 +3680,6 @@ Core/Inc/DOT_MATRIX_cfg.h:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 15:04:06.8233447
 #  File has been updated.
- 
 #  Successfully updated.
 
 # Not a target:
@@ -3770,6 +3732,7 @@ Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
 #  File has not been updated.
 
 Core/Src//FilteringFunctions/arm_fir_decimate_q31.c:
+ 
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:59.2548747
 #  File has been updated.
@@ -3782,7 +3745,6 @@ Core/Src//MatrixFunctions/arm_mat_mult_q15.c:
 #  Successfully updated.
 
 # Not a target:
- 
 build/stm32f1xx_hal_gpio_ex.d:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-21 00:32:24.485350706
@@ -3847,7 +3809,6 @@ Core/Src//StatisticsFunctions/arm_rms_q15.c:
 # Not a target:
 build/stm32f1xx_hal_tim.d:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-21 00:32:28.219362157
 #  File has been updated.
 #  Successfully updated.
@@ -3891,11 +3852,11 @@ Core/Src//SupportFunctions/arm_fill_q7.c:
 build/usbd_desc.o: USB_DEVICE/App/usbd_desc.c Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h USB_DEVICE/Target/usbd_conf.h Core/Inc/main.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h Core/Inc/stm32f1xx_hal_conf.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h Drivers/CMSIS/Include/core_cm3.h Drivers/CMSIS/Include/cmsis_version.h Drivers/CMSIS/Include/cmsis_compiler.h Drivers/CMSIS/Include/cmsis_gcc.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usb.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd_ex.h Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h USB_DEVICE/App/usbd_desc.h Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
+ 
 #  File has not been updated.
 
 Core/Src//StatisticsFunctions/arm_rms_f32.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:01:00.1068807
 #  File has been updated.
 #  Successfully updated.
@@ -3946,7 +3907,6 @@ Core/Src//StatisticsFunctions/arm_max_q7.c:
 #  Last modified 2025-04-12 16:01:00.0758805
 #  File has been updated.
 #  Successfully updated.
- 
 
 # Not a target:
 build/croutine.d:
@@ -4014,6 +3974,7 @@ Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 #  Last modified 2025-04-07 12:30:41.6866985
 #  File has been updated.
 #  Successfully updated.
+ 
 
 Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h:
 #  Implicit rule search has been done.
@@ -4021,7 +3982,6 @@ Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h:
 #  File has been updated.
 #  Successfully updated.
 
- 
 build/DOT_MATRIX_cfg.o: Core/Src/DOT_MATRIX_cfg.c Makefile Core/Src/DOT_MATRIX_cfg.c Core/Inc/DOT_MATRIX.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h Drivers/CMSIS/Include/core_cm3.h Drivers/CMSIS/Include/cmsis_version.h Drivers/CMSIS/Include/cmsis_compiler.h Drivers/CMSIS/Include/cmsis_gcc.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h Core/Inc/stm32f1xx_hal_conf.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h | build
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'DOT_MATRIX_cfg'
@@ -4068,7 +4028,6 @@ Core/Src//FastMathFunctions/arm_divide_q15.c:
 
 Core/Src//TransformFunctions/arm_cfft_radix4_init_q31.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:01:00.6198843
 #  File has been updated.
 #  Successfully updated.
@@ -4091,6 +4050,7 @@ Core/Src//MatrixFunctions/arm_mat_vec_mult_q15.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:59.7548782
 #  File has been updated.
+ 
 #  Successfully updated.
 
 Core/Src//DistanceFunctions/arm_sokalsneath_distance.c:
@@ -4118,7 +4078,6 @@ Core/Src//StatisticsFunctions/arm_absmax_no_idx_f32.c:
 #  Successfully updated.
 
 Core/Src//TransformFunctions/arm_cfft_f32.c:
- 
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.5988842
 #  File has been updated.
@@ -4145,8 +4104,8 @@ Core/Src//FilteringFunctions/arm_conv_partial_opt_q7.c:
 build/stm32f1xx_hal_rcc.o: Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c Makefile Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h Core/Inc/stm32f1xx_hal_conf.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h Drivers/CMSIS/Include/core_cm3.h Drivers/CMSIS/Include/cmsis_version.h Drivers/CMSIS/Include/cmsis_compiler.h Drivers/CMSIS/Include/cmsis_gcc.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h | build
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'stm32f1xx_hal_rcc'
- 
 #  Last modified 2025-04-21 00:32:25.822354806
+ 
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 181):
@@ -4156,10 +4115,8 @@ Core/Src//FastMathFunctions/arm_vexp_f32.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:59.1378739
 #  File has been updated.
- 
 #  Successfully updated.
 
- 
 Core/Src//MatrixFunctions/arm_mat_inverse_f64.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:59.7088779
@@ -4173,7 +4130,6 @@ Core/Src//StatisticsFunctions/arm_absmin_f32.c:
 #  Successfully updated.
 
 Core/Src//StatisticsFunctions/arm_absmin_f64.c:
- 
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.0338802
 #  File has been updated.
@@ -4228,7 +4184,6 @@ Core/Src//FilteringFunctions/arm_conv_partial_q7.c:
 
 Core/Src//StatisticsFunctions/arm_min_f64.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:01:00.0868806
 #  File has been updated.
 #  Successfully updated.
@@ -4282,13 +4237,13 @@ Core/Src//MatrixFunctions/arm_mat_solve_upper_triangular_f64.c:
 
 Core/Src//TransformFunctions/arm_cfft_radix4_init_q15.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:01:00.6198843
 #  File has been updated.
 #  Successfully updated.
 
 Core/Src//StatisticsFunctions/arm_logsumexp_f32.c:
 #  Implicit rule search has been done.
+ 
 #  Last modified 2025-04-12 16:01:00.0628804
 #  File has been updated.
 #  Successfully updated.
@@ -4329,7 +4284,6 @@ USB_DEVICE/App/usb_device.c:
 
 Core/Src//SupportFunctions/arm_float_to_f64.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:01:00.2768819
 #  File has been updated.
 #  Successfully updated.
@@ -4346,7 +4300,6 @@ Core/Src//MatrixFunctions/arm_mat_solve_lower_triangular_f64.c:
 #  Last modified 2025-04-12 16:00:59.7358781
 #  File has been updated.
 #  Successfully updated.
- 
 
 Core/Src//DistanceFunctions/arm_dice_distance.c:
 #  Implicit rule search has been done.
@@ -4375,7 +4328,6 @@ build/stm32f1xx_hal_dma.o: Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c 
 #  Last modified 2025-04-21 00:32:25.833354839
 #  File has been updated.
 #  Successfully updated.
- 
 #  recipe to execute (from 'Makefile', line 181):
 	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
 
@@ -4387,9 +4339,7 @@ Core/Src//BasicMathFunctions/arm_xor_u32.c:
 
 Core/Src//BasicMathFunctions/arm_offset_q15.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:00:58.1698671
- 
 #  File has been updated.
 #  Successfully updated.
 
@@ -4399,7 +4349,6 @@ Core/Src//CommonTables/arm_mve_tables.c:
 #  File has been updated.
 #  Successfully updated.
 
- 
 Core/Src//BasicMathFunctions/arm_and_u16.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:58.1318668
@@ -4415,7 +4364,6 @@ build/BasicMathFunctions.d:
 
 Core/Src//FilteringFunctions/arm_lms_q15.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:00:59.3228752
 #  File has been updated.
 #  Successfully updated.
@@ -4428,7 +4376,6 @@ Core/Src//SVMFunctions/arm_svm_rbf_init_f32.c:
 
 Core/Src//StatisticsFunctions/arm_min_q7.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:01:00.0938806
 #  File has been updated.
 #  Successfully updated.
@@ -4443,7 +4390,6 @@ Core/Src//SupportFunctions/arm_quick_sort_f32.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.3088821
 #  File has been updated.
- 
 #  Successfully updated.
 
 Core/Src//BasicMathFunctions/arm_sub_q7.c:
@@ -4457,9 +4403,9 @@ Core/Src//BasicMathFunctions/arm_or_u16.c:
 #  Last modified 2025-04-12 16:00:58.1748671
 #  File has been updated.
 #  Successfully updated.
- 
 
 Core/Src//FastMathFunctions/arm_sqrt_q31.c:
+ 
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:59.1358739
 #  File has been updated.
@@ -4472,7 +4418,6 @@ Core/Src//FilteringFunctions/arm_lms_norm_init_f32.c:
 #  Successfully updated.
 
 Core/Src//TransformFunctions/arm_transform_buffer_sizes.c:
- 
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.6388844
 #  File has been updated.
@@ -4486,7 +4431,6 @@ Core/Src//WindowFunctions/arm_nuttall4b_f32.c:
 
 Core/Src//WindowFunctions/arm_hft95_f64.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:01:00.8138857
 #  File has been updated.
 #  Successfully updated.
@@ -4499,7 +4443,6 @@ Core/Src//FilteringFunctions/arm_conv_opt_q7.c:
 
 Core/Src//WindowFunctions/arm_hft116d_f64.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:01:00.8058856
 #  File has been updated.
 #  Successfully updated.
@@ -4515,7 +4458,6 @@ Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
 #  Modification time never checked.
 #  File has not been updated.
 
- 
 Middlewares/Third_Party/FatFs/src/integer.h:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -4533,7 +4475,6 @@ Middlewares/Third_Party/FatFs/src/ff_gen_drv.h:
 #  File has not been updated.
 
 Core/Src//BasicMathFunctions/arm_abs_q7.c:
- 
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:58.1278668
 #  File has been updated.
@@ -4558,6 +4499,7 @@ Core/Src//MatrixFunctions/arm_householder_f32.c:
 #  Successfully updated.
 
 Core/Src//FilteringFunctions/arm_conv_opt_q15.c:
+ 
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:59.2388746
 #  File has been updated.
@@ -4587,7 +4529,6 @@ Core/Src//StatisticsFunctions/arm_kullback_leibler_f64.c:
 #  File has been updated.
 #  Successfully updated.
 
- 
 build/diskio.o: Middlewares/Third_Party/FatFs/src/diskio.c Middlewares/Third_Party/FatFs/src/diskio.h Middlewares/Third_Party/FatFs/src/integer.h Middlewares/Third_Party/FatFs/src/ff_gen_drv.h Middlewares/Third_Party/FatFs/src/ff.h FATFS/Target/ffconf.h Core/Inc/main.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h Core/Inc/stm32f1xx_hal_conf.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h Drivers/CMSIS/Include/core_cm3.h Drivers/CMSIS/Include/cmsis_version.h Drivers/CMSIS/Include/cmsis_compiler.h Drivers/CMSIS/Include/cmsis_gcc.h Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usb.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd_ex.h Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h Core/Inc/FreeRTOSConfig.h Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h Middlewares/Third_Party/FreeRTOS/Source/include/portable.h Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h Middlewares/Third_Party/FreeRTOS/Source/include/task.h Middlewares/Third_Party/FreeRTOS/Source/include/list.h Middlewares/Third_Party/FreeRTOS/Source/include/timers.h Middlewares/Third_Party/FreeRTOS/Source/include/task.h Middlewares/Third_Party/FreeRTOS/Source/include/queue.h Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h Middlewares/Third_Party/FreeRTOS/Source/include/queue.h Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -4602,6 +4543,7 @@ Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c:
 
 # Not a target:
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c:
+ 
 #  Implicit rule search has been done.
 #  Last modified 2025-04-07 12:30:41.7125615
 #  File has been updated.
@@ -4650,7 +4592,6 @@ build/tasks.d:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 15:04:05.8593401
 #  File has been updated.
- 
 #  Successfully updated.
 
 Drivers/CMSIS/Include/cmsis_gcc.h:
@@ -4658,6 +4599,7 @@ Drivers/CMSIS/Include/cmsis_gcc.h:
 #  Last modified 2025-04-07 12:30:36.9610384
 #  File has been updated.
 #  Successfully updated.
+ 
 
 # Not a target:
 build/fatfs.d:
@@ -4671,13 +4613,11 @@ Core/Src//WindowFunctions/arm_hft248d_f64.c:
 #  Last modified 2025-04-12 16:01:00.8128857
 #  File has been updated.
 #  Successfully updated.
- 
 
 Core/Src//ComplexMathFunctions/arm_cmplx_mult_cmplx_f64.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:58.6098702
 #  File has been updated.
- 
 #  Successfully updated.
 
 # Not a target:
@@ -4707,7 +4647,6 @@ Middlewares/Third_Party/FreeRTOS/Source/include/stack_macros.h:
 
 Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-07 12:30:41.6827015
 #  File has been updated.
 #  Successfully updated.
@@ -4782,7 +4721,6 @@ Core/Inc/dsp/fast_math_functions.h:
 # Not a target:
 Core/Src//TransformFunctions/TransformFunctions.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:01:00.5918841
 #  File has been updated.
 #  Successfully updated.
@@ -4801,6 +4739,7 @@ Core/Src//FilteringFunctions/arm_fir_f32.c:
 
 Core/Src//TransformFunctions/arm_cfft_init_f32.c:
 #  Implicit rule search has been done.
+ 
 #  Last modified 2025-04-12 16:01:00.6008842
 #  File has been updated.
 #  Successfully updated.
@@ -4837,7 +4776,6 @@ Core/Src//MatrixFunctions/arm_mat_cmplx_mult_f32.c:
 
 Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-07 12:30:41.6766901
 #  File has been updated.
 #  Successfully updated.
@@ -4883,7 +4821,6 @@ Middlewares/Third_Party/FatFs/src/diskio.c:
 
 # Not a target:
 Core/Src/stm32f1xx_it.c:
- 
 #  Implicit rule search has been done.
 #  Last modified 2025-04-16 18:32:51.697
 #  File has been updated.
@@ -4912,6 +4849,7 @@ Core/Src//ComplexMathFunctions/arm_cmplx_mult_cmplx_q15.c:
 #  Successfully updated.
 
 Core/Inc/dsp/svm_functions.h:
+ 
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:41.6997512
 #  File has been updated.
@@ -4930,7 +4868,6 @@ build/usbd_cdc_if.o: USB_DEVICE/App/usbd_cdc_if.c USB_DEVICE/App/usbd_cdc_if.h M
 #  File has not been updated.
 
 Core/Src//WindowFunctions/arm_nuttall3a_f32.c:
- 
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.8288858
 #  File has been updated.
@@ -4982,7 +4919,6 @@ Core/Src//FilteringFunctions/arm_lms_norm_f32.c:
 #  File has been updated.
 #  Successfully updated.
 
- 
 Core/Src//StatisticsFunctions/arm_power_f32.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.1028807
@@ -5001,7 +4937,6 @@ Core/Src//FastMathFunctions/arm_cos_f32.c:
 #  Successfully updated.
 
 Core/Src//FastMathFunctions/arm_sin_q15.c:
- 
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:59.1328738
 #  File has been updated.
@@ -5047,7 +4982,6 @@ Core/Src//StatisticsFunctions/arm_mean_q31.c:
 
 Core/Src//StatisticsFunctions/arm_var_f32.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:01:00.1218808
 #  File has been updated.
 #  Successfully updated.
@@ -5078,12 +5012,12 @@ Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc_ex.h:
 build/stm32f1xx_hal_pcd_ex.d:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 15:04:05.7623396
+ 
 #  File has been updated.
 #  Successfully updated.
 
 Core/Inc/stm32f1xx_it.h:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-16 18:32:51.99
 #  File has been updated.
 #  Successfully updated.
@@ -5110,10 +5044,10 @@ Core/Src//FilteringFunctions/arm_fir_decimate_init_f32.c:
 
 Core/Src//QuaternionMathFunctions/arm_quaternion_product_single_f32.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:00:59.8888792
 #  File has been updated.
 #  Successfully updated.
+ 
 
 Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h:
 #  Implicit rule search has been done.
@@ -5130,6 +5064,7 @@ Core/Src//StatisticsFunctions/arm_absmin_q7.c:
 Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-07 12:30:41.6876986
+ 
 #  File has been updated.
 #  Successfully updated.
 
@@ -5143,6 +5078,7 @@ Core/Src//StatisticsFunctions/arm_max_f32.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.0628804
 #  File has been updated.
+ 
 #  Successfully updated.
 
 Core/Src//FilteringFunctions/arm_biquad_cascade_df1_32x64_init_q31.c:
@@ -5153,7 +5089,6 @@ Core/Src//FilteringFunctions/arm_biquad_cascade_df1_32x64_init_q31.c:
 
 Core/Src//ComplexMathFunctions/arm_cmplx_mult_cmplx_f32.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:00:58.6098702
 #  File has been updated.
 #  Successfully updated.
@@ -5190,7 +5125,6 @@ Core/Src//FilteringFunctions/arm_correlate_f32.c:
 
 Core/Src//WindowFunctions/arm_bartlett_f64.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:01:00.8028856
 #  File has been updated.
 #  Successfully updated.
@@ -5252,11 +5186,11 @@ build/stm32f1xx_hal_gpio_ex.o: Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gp
 Core/Src//StatisticsFunctions/arm_mean_f32.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.0768805
- 
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
+ 
 build/startup_stm32f103xb.d:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-21 00:32:38.745394438
@@ -5290,7 +5224,6 @@ Core/Src//StatisticsFunctions/arm_power_q31.c:
 Core/Src//StatisticsFunctions/arm_mse_q31.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.0998806
- 
 #  File has been updated.
 #  Successfully updated.
 
@@ -5320,7 +5253,6 @@ Core/Inc/dsp/interpolation_functions.h:
 
 Core/Src//FilteringFunctions/arm_fir_q31.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:00:59.2698748
 #  File has been updated.
 #  Successfully updated.
@@ -5343,7 +5275,6 @@ build/FilteringFunctions.d:
 #  File has been updated.
 #  Successfully updated.
 
- 
 Core/Src//TransformFunctions/arm_mfcc_q15.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:01:00.6288844
@@ -5358,7 +5289,6 @@ Core/Src//FilteringFunctions/arm_biquad_cascade_df1_init_q31.c:
 
 Core/Src//FilteringFunctions/arm_lms_norm_q15.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:00:59.3208752
 #  File has been updated.
 #  Successfully updated.
@@ -5371,7 +5301,6 @@ build/stm32f1xx_it.o: Core/Src/stm32f1xx_it.c Makefile Core/Src/stm32f1xx_it.c C
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 181):
 	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
- 
 
 Drivers/CMSIS/Include/cmsis_version.h:
 #  Implicit rule search has been done.
@@ -5394,7 +5323,6 @@ Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h:
 Core/Src/freertos.c:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
- 
 #  File has not been updated.
 
 Core/Src//FastMathFunctions/arm_sin_f32.c:
@@ -5407,6 +5335,7 @@ Core/Src//InterpolationFunctions/arm_bilinear_interp_q31.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:59.5248766
 #  File has been updated.
+ 
 #  Successfully updated.
 
 Core/Src//SupportFunctions/arm_float_to_q15.c:
@@ -5449,7 +5378,6 @@ Core/Src//SupportFunctions/arm_selection_sort_f32.c:
 Core/Src//BasicMathFunctions/arm_not_u8.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-04-12 16:00:58.164867
- 
 #  File has been updated.
 #  Successfully updated.
 
@@ -5511,7 +5439,6 @@ Core/Src//BasicMathFunctions/arm_offset_q7.c:
 
 Core/Src//InterpolationFunctions/arm_spline_interp_f32.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2025-04-12 16:00:59.5308766
 #  File has been updated.
 #  Successfully updated.
@@ -5539,14 +5466,14 @@ vpath %.c Core/Src:Core/Src//BasicMathFunctions:Core/Src//BayesFunctions:Core/Sr
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 7 (6) / strings = 1858 / storage = 56866 B / avg = 30 B
-# current buf: size = 8162 B / used = 7964 B / count = 369 / avg = 21 B
-# other used: total = 48902 B / count = 1489 / avg = 32 B
-# other free: total = 70 B / max = 23 B / min = 1 B / avg = 11 B
+# strcache buffers: 7 (6) / strings = 1860 / storage = 56884 B / avg = 30 B
+# current buf: size = 8162 B / used = 7993 B / count = 370 / avg = 21 B
+# other used: total = 48891 B / count = 1490 / avg = 32 B
+# other free: total = 81 B / max = 23 B / min = 7 B / avg = 13 B
 
-# strcache performance: lookups = 8779 / hit rate = 78%
+# strcache performance: lookups = 8781 / hit rate = 78%
 # hash-table stats:
-# Load=1858/8192=23%, Rehash=0, Collisions=1125/8779=13%
-# Finished Make data base on Mon Apr 21 00:47:51 2025
+# Load=1860/8192=23%, Rehash=0, Collisions=1127/8781=13%
+# Finished Make data base on Wed May 28 21:41:25 2025
 
  

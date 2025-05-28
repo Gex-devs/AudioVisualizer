@@ -223,8 +223,6 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    // generate_test_tone(); // regenerate test signal each loop
-
     if (adc_dma_flag)
     {
       adc_dma_flag = false;
@@ -235,9 +233,9 @@ int main(void)
         input_fft[i] = (float32_t)(microphone_input[i]) - 2048.0f; // Center around 0
       }
 
-      arm_rfft_fast_f32(&fft_instance, input_fft, output_fft, 0);
+      arm_rfft_fast_f32(&fft_instance, input_fft, output_fft, 0); // Fast FFT
 
-      arm_cmplx_mag_f32(output_fft, output_fft_mag, FFT_LENGTH / 2);
+      arm_cmplx_mag_f32(output_fft, output_fft_mag, FFT_LENGTH / 2); // Get mag values
 
       int step = (FFT_LENGTH / 2) / MATRIX_X;
       int c = 0;
