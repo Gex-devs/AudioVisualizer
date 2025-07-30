@@ -6,7 +6,8 @@
         "basic_math_functions.h": "c",
         "arm_common_tables.h": "c",
         "fast_math_functions.h": "c",
-        "arm_math_types.h": "c"
+        "arm_math_types.h": "c",
+        "main.h": "c"
     },
     "cortex-debug.gdbPath": "gdb-multiarch", 
     "makefile.extensionOutputFolder": "./.vscode",
