@@ -212,10 +212,10 @@ int main(void)
       // Sample microphone input
       for (int i = 0; i < FFT_LENGTH; i++)
       {
-        input_fft[i] = (float32_t)raw_microphone_input[i] - 1048.0f; // Center around 0
+        input_fft[i] = (float32_t)raw_microphone_input[i] - 2048.0f; // Center around 0
         // input_fft[i] = arm_sin_f32(2.0f * PI * 16 * i / FFT_LENGTH);
       }
-
+      
       // Applying High-pass filter
       arm_fir_f32(&fir, input_fft, input_fft, FFT_LENGTH);
 
@@ -244,7 +244,7 @@ int main(void)
       for (int i = 0; i < MATRIX_X; i++)
       {
         data_avgs[i] = constrain(data_avgs[i], 0, 80);        // set max & min values for buckets
-        data_avgs[i] = map(data_avgs[i], 0, 80, 0, MATRIX_Y); // remap averaged values to yres
+        data_avgs[i] = map(data_avgs[i], 0, 32, 0, MATRIX_Y); // remap averaged values to yres
         yvalue = data_avgs[i];
 
         peaks[i] = peaks[i] - 1; // decay by one light
