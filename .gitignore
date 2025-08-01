@@ -1,5 +1,6 @@
 build
 Drivers
+.vscode/*.log
 EWARM
 FATFS
 Middlewares
