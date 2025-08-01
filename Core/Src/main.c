@@ -41,9 +41,10 @@
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
 #define MATRIX_DISPLAY_UNIT1 0
-#define FFT_LENGTH  64
+#define FFT_LENGTH 64
 #define MATRIX_X 32
 #define MATRIX_Y 8
+#define NUM_TAPS 29
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -55,7 +56,7 @@ SPI_HandleTypeDef hspi1;
 TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
-uint16_t microphone_input[FFT_LENGTH];
+uint16_t raw_microphone_input[FFT_LENGTH];
 bool status = false;
 arm_rfft_fast_instance_f32 fft_instance;
 arm_status status_fft;
@@ -63,14 +64,26 @@ arm_status status_fft;
 float32_t input_fft[FFT_LENGTH];
 float32_t output_fft[FFT_LENGTH];
 float32_t output_fft_mag[FFT_LENGTH / 2];
+
+float32_t window_coff[FFT_LENGTH];
+
 char data_avgs[MATRIX_X];
 
 int yvalue;
 int peaks[MATRIX_X] = {0};
 int displaycolumn, displayvalue;
 
+float32_t firState[NUM_TAPS + FFT_LENGTH - 1];
+
 int MY_ARRAY[] = {0, 128, 192, 224, 240, 248, 252, 254, 255};
 bool adc_dma_flag = false;
+
+const float32_t firCoeffs[NUM_TAPS] = {
+    -0.0041, -0.0053, -0.0026, 0.0055, 0.0163, 0.0212, 0.0124,
+    -0.0115, -0.0402, -0.0537, -0.0360, 0.0143, 0.0845, 0.1465,
+    0.1784, 0.1465, 0.0845, 0.0143, -0.0360, -0.0537, -0.0402,
+    -0.0115, 0.0124, 0.0212, 0.0163, 0.0055, -0.0026, -0.0053,
+    -0.0041};
 
 /* USER CODE END PV */
 
@@ -119,7 +132,7 @@ void generate_test_tone()
 
   for (int i = 0; i < FFT_LENGTH; i++)
   {
-    microphone_input[i] = (uint16_t)(2048 + 2047 * sinf(current_phase));
+    raw_microphone_input[i] = (uint16_t)(2048 + 2047 * sinf(current_phase));
     current_phase += phase_increment;
 
     // Keep phase in range to avoid float overflow
@@ -133,9 +146,9 @@ void generate_test_tone()
 /* USER CODE END 0 */
 
 /**
-  * @brief  The application entry point.
-  * @retval int
-  */
+ * @brief  The application entry point.
+ * @retval int
+ */
 int main(void)
 {
   /* USER CODE BEGIN 1 */
@@ -172,48 +185,17 @@ int main(void)
   HAL_ADCEx_Calibration_Start(&hadc1);
   HAL_DMA_Init(&hdma_adc1);
 
-  if (HAL_ADC_Start_DMA(&hadc1, (uint32_t *)microphone_input, FFT_LENGTH) != HAL_OK)
+  if (HAL_ADC_Start_DMA(&hadc1, (uint32_t *)raw_microphone_input, FFT_LENGTH) != HAL_OK)
   {
     Error_Handler(); // Could help debug DMA misconfig
   }
+
   status_fft = arm_rfft_fast_init_f32(&fft_instance, FFT_LENGTH);
+  arm_fir_instance_f32 fir;
+  arm_fir_init_f32(&fir, NUM_TAPS, firCoeffs, firState, FFT_LENGTH);
 
-  // for (int i = 0; i < FFT_LENGTH; i++)
-  // {
-  //   input_fft[i] = arm_sin_f32(2 * 3.14159 * 500.0 * i / 16000);
-  // }
-
-  // arm_rfft_fast_f32(&fft_instance, input_fft, output_fft, 0);
-  // arm_cmplx_mag_f32(output_fft, output_fft_mag, FFT_LENGTH / 2);
-
-  // int step = (FFT_LENGTH / 2) / MATRIX_X;
-  // int c = 0;
-  // for (int i = 0; i < (FFT_LENGTH / 2); i += step)
-  // {
-  //   data_avgs[c] = 0;
-  //   for (int k = 0; k < step; k++)
-  //   {
-  //     data_avgs[c] = data_avgs[c] + output_fft_mag[i + k];
-  //   }
-  //   data_avgs[c] = data_avgs[c] / step;
-  //   c++;
-  // }
-
-  // for (int i = 0; i < MATRIX_X; i++)
-  // {
-  //   data_avgs[i] = constrain(data_avgs[i], 0, 80);        // set max & min values for buckets
-  //   data_avgs[i] = map(data_avgs[i], 0, 80, 0, MATRIX_Y); // remap averaged values to yres
-  //   yvalue = data_avgs[i];
-
-  //   peaks[i] = peaks[i] - 1; // decay by one light
-  //   if (yvalue > peaks[i])
-  //     peaks[i] = yvalue;
-  //   yvalue = peaks[i];
-  //   displayvalue = MY_ARRAY[yvalue];
-  //   displaycolumn = 31 - i;
-  //   SET_COLUMN(MATRIX_DISPLAY_UNIT1, displaycolumn, reverse_bits(displayvalue)); // for left to right
-  // }
-
+  // arm_blackman_harris_92db_f32(window_coff, FFT_LENGTH);
+  arm_hamming_f32(window_coff, FFT_LENGTH); // Generate Window coefficients
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -230,7 +212,16 @@ int main(void)
       // Sample microphone input
       for (int i = 0; i < FFT_LENGTH; i++)
       {
-        input_fft[i] = (float32_t)(microphone_input[i]) - 2048.0f; // Center around 0
+        input_fft[i] = (float32_t)raw_microphone_input[i] - 1048.0f; // Center around 0
+        // input_fft[i] = arm_sin_f32(2.0f * PI * 16 * i / FFT_LENGTH);
+      }
+
+      // Applying High-pass filter
+      arm_fir_f32(&fir, input_fft, input_fft, FFT_LENGTH);
+
+      for (int i = 0; i < FFT_LENGTH; i++)
+      {
+        input_fft[i] *= window_coff[i]; // Apply Window
       }
 
       arm_rfft_fast_f32(&fft_instance, input_fft, output_fft, 0); // Fast FFT
@@ -270,9 +261,9 @@ int main(void)
 }
 
 /**
-  * @brief System Clock Configuration
-  * @retval None
-  */
+ * @brief System Clock Configuration
+ * @retval None
+ */
 void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
@@ -280,8 +271,8 @@ void SystemClock_Config(void)
   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
 
   /** Initializes the RCC Oscillators according to the specified parameters
-  * in the RCC_OscInitTypeDef structure.
-  */
+   * in the RCC_OscInitTypeDef structure.
+   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
@@ -295,9 +286,8 @@ void SystemClock_Config(void)
   }
 
   /** Initializes the CPU, AHB and APB buses clocks
-  */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+   */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
@@ -316,10 +306,10 @@ void SystemClock_Config(void)
 }
 
 /**
-  * @brief ADC1 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief ADC1 Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_ADC1_Init(void)
 {
 
@@ -334,7 +324,7 @@ static void MX_ADC1_Init(void)
   /* USER CODE END ADC1_Init 1 */
 
   /** Common config
-  */
+   */
   hadc1.Instance = ADC1;
   hadc1.Init.ScanConvMode = ADC_SCAN_DISABLE;
   hadc1.Init.ContinuousConvMode = ENABLE;
@@ -348,7 +338,7 @@ static void MX_ADC1_Init(void)
   }
 
   /** Configure Regular Channel
-  */
+   */
   sConfig.Channel = ADC_CHANNEL_0;
   sConfig.Rank = ADC_REGULAR_RANK_1;
   sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
@@ -359,14 +349,13 @@ static void MX_ADC1_Init(void)
   /* USER CODE BEGIN ADC1_Init 2 */
 
   /* USER CODE END ADC1_Init 2 */
-
 }
 
 /**
-  * @brief SPI1 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief SPI1 Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_SPI1_Init(void)
 {
 
@@ -397,14 +386,13 @@ static void MX_SPI1_Init(void)
   /* USER CODE BEGIN SPI1_Init 2 */
 
   /* USER CODE END SPI1_Init 2 */
-
 }
 
 /**
-  * @brief TIM2 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief TIM2 Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_TIM2_Init(void)
 {
 
@@ -442,12 +430,11 @@ static void MX_TIM2_Init(void)
   /* USER CODE BEGIN TIM2_Init 2 */
 
   /* USER CODE END TIM2_Init 2 */
-
 }
 
 /**
-  * Enable DMA controller clock
-  */
+ * Enable DMA controller clock
+ */
 static void MX_DMA_Init(void)
 {
 
@@ -458,19 +445,18 @@ static void MX_DMA_Init(void)
   /* DMA1_Channel1_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
-
 }
 
 /**
-  * @brief GPIO Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief GPIO Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
-/* USER CODE BEGIN MX_GPIO_Init_1 */
-/* USER CODE END MX_GPIO_Init_1 */
+  /* USER CODE BEGIN MX_GPIO_Init_1 */
+  /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOC_CLK_ENABLE();
@@ -487,8 +473,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-/* USER CODE BEGIN MX_GPIO_Init_2 */
-/* USER CODE END MX_GPIO_Init_2 */
+  /* USER CODE BEGIN MX_GPIO_Init_2 */
+  /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
@@ -508,9 +494,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 /* USER CODE END 4 */
 
 /**
-  * @brief  This function is executed in case of error occurrence.
-  * @retval None
-  */
+ * @brief  This function is executed in case of error occurrence.
+ * @retval None
+ */
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
@@ -522,14 +508,14 @@ void Error_Handler(void)
   /* USER CODE END Error_Handler_Debug */
 }
 
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
+ * @brief  Reports the name of the source file and the source line number
+ *         where the assert_param error has occurred.
+ * @param  file: pointer to the source file name
+ * @param  line: assert_param error line source number
+ * @retval None
+ */
 void assert_failed(uint8_t *file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
