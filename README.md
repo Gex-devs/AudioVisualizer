@@ -7,7 +7,7 @@ Audio Visualizer based on STM32 bluepill utilizing Fast FFT and hacky trick to m
 
 ## Compact Size
 
-Made a small Add-on type PCB that laches on the back of the PCB that runs the Visualizing matrix.
+Made a small Add-on type PCB that laches on the back of the  LED matrix.
 
 <Img src="audioVisualizer_PCB/Preview/PCB.png">
 
