@@ -16,8 +16,8 @@ const DOT_MATRIX_CfgType DOT_MATRIX_CfgParam[DOT_MATRIX_UNITS] =
     {
         // DOT_MATRIX Display Unit1 Configurations
         {
-            GPIOB,
-            GPIO_PIN_0,
+            GPIOA,
+            GPIO_PIN_6,
             75, /* Scroll Speed*/
             4,  /* Number Of Cascaded Devices*/
             8,  /* Brightness Level */

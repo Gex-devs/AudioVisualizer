@@ -44,7 +44,6 @@
 #define FFT_LENGTH 64
 #define MATRIX_X 32
 #define MATRIX_Y 8
-#define NUM_TAPS 29
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -54,6 +53,7 @@ DMA_HandleTypeDef hdma_adc1;
 SPI_HandleTypeDef hspi1;
 
 TIM_HandleTypeDef htim2;
+TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
 uint16_t raw_microphone_input[FFT_LENGTH];
@@ -73,17 +73,149 @@ int yvalue;
 int peaks[MATRIX_X] = {0};
 int displaycolumn, displayvalue;
 
-float32_t firState[NUM_TAPS + FFT_LENGTH - 1];
-
 int MY_ARRAY[] = {0, 128, 192, 224, 240, 248, 252, 254, 255};
 bool adc_dma_flag = false;
 
-const float32_t firCoeffs[NUM_TAPS] = {
-    -0.0041, -0.0053, -0.0026, 0.0055, 0.0163, 0.0212, 0.0124,
-    -0.0115, -0.0402, -0.0537, -0.0360, 0.0143, 0.0845, 0.1465,
-    0.1784, 0.1465, 0.0845, 0.0143, -0.0360, -0.0537, -0.0402,
-    -0.0115, 0.0124, 0.0212, 0.0163, 0.0055, -0.0026, -0.0053,
-    -0.0041};
+/*
+
+FIR filter designed with
+http://t-filter.appspot.com
+
+sampling frequency: 8000 Hz
+
+* 0 Hz - 1200 Hz
+  gain = 0
+  desired attenuation = -45 dB
+  actual attenuation = -47.35344673133169 dB
+
+* 1300 Hz - 1400 Hz
+  gain = 1
+  desired ripple = 5 dB
+  actual ripple = 3.129857707910803 dB
+
+* 1500 Hz - 4000 Hz
+  gain = 0
+  desired attenuation = -45 dB
+  actual attenuation = -47.35344673133169 dB
+
+*/
+
+#define FILTER_TAP_NUM 109
+
+static float filter_taps[FILTER_TAP_NUM] = {
+  0.0009546973999630191,
+  0.003168463762582948,
+  -0.00014550904213110895,
+  -0.0017745426915630291,
+  -0.002664106543097514,
+  -0.00036921593047873914,
+  0.003018132083844269,
+  0.003850383032839122,
+  0.0003728120301078761,
+  -0.004458838069926212,
+  -0.005326982598694947,
+  -0.0002608863102040281,
+  0.006246838898338785,
+  0.007030902140359828,
+  0.0000012699594340840336,
+  -0.008400842352906581,
+  -0.008926052876460491,
+  0.0004439041844444118,
+  0.010910045918458835,
+  0.010959999083078232,
+  -0.001107982528777111,
+  -0.013743212798719732,
+  -0.013065879748489363,
+  0.00201720111617057,
+  0.01684902548044834,
+  0.015164746414713071,
+  -0.0031873034645785326,
+  -0.020153081865200102,
+  -0.017170818908960734,
+  0.004616256862906045,
+  0.023564130118216217,
+  0.018999989034372274,
+  -0.006289433783701813,
+  -0.02697561269817318,
+  -0.020566141122448665,
+  0.008171691693646257,
+  0.03026645273348758,
+  0.02179714590281802,
+  -0.010211816983530925,
+  -0.03331727937348779,
+  -0.02263070427420169,
+  0.012345268053275658,
+  0.03600596240989731,
+  0.023026005012736047,
+  -0.014490320751035603,
+  -0.03822778476732951,
+  -0.022961285857759466,
+  0.016563922334333316,
+  0.03988647733784863,
+  0.022439122204093522,
+  -0.01847596424486482,
+  -0.04091237110489502,
+  -0.021484839554491906,
+  0.020143026983816276,
+  0.04125859582635884,
+  0.020143026983816276,
+  -0.021484839554491906,
+  -0.04091237110489502,
+  -0.01847596424486482,
+  0.022439122204093522,
+  0.03988647733784863,
+  0.016563922334333316,
+  -0.022961285857759466,
+  -0.03822778476732951,
+  -0.014490320751035603,
+  0.023026005012736047,
+  0.03600596240989731,
+  0.012345268053275658,
+  -0.02263070427420169,
+  -0.03331727937348779,
+  -0.010211816983530925,
+  0.02179714590281802,
+  0.03026645273348758,
+  0.008171691693646257,
+  -0.020566141122448665,
+  -0.02697561269817318,
+  -0.006289433783701813,
+  0.018999989034372274,
+  0.023564130118216217,
+  0.004616256862906045,
+  -0.017170818908960734,
+  -0.020153081865200102,
+  -0.0031873034645785326,
+  0.015164746414713071,
+  0.01684902548044834,
+  0.00201720111617057,
+  -0.013065879748489363,
+  -0.013743212798719732,
+  -0.001107982528777111,
+  0.010959999083078232,
+  0.010910045918458835,
+  0.0004439041844444118,
+  -0.008926052876460491,
+  -0.008400842352906581,
+  0.0000012699594340840336,
+  0.007030902140359828,
+  0.006246838898338785,
+  -0.0002608863102040281,
+  -0.005326982598694947,
+  -0.004458838069926212,
+  0.0003728120301078761,
+  0.003850383032839122,
+  0.003018132083844269,
+  -0.00036921593047873914,
+  -0.002664106543097514,
+  -0.0017745426915630291,
+  -0.00014550904213110895,
+  0.003168463762582948,
+  0.0009546973999630191
+};
+
+
+float32_t firState[FILTER_TAP_NUM + FFT_LENGTH - 1];
 
 /* USER CODE END PV */
 
@@ -94,6 +226,7 @@ static void MX_DMA_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_ADC1_Init(void);
+static void MX_TIM3_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -177,11 +310,12 @@ int main(void)
   MX_TIM2_Init();
   MX_SPI1_Init();
   MX_ADC1_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
   DOT_MATRIX_Init_TMR(&hspi1, &htim2);
-  // MATRIX_DisplayMessage(MATRIX_DISPLAY_UNIT1, MSG, sizeof(MSG));
   MATRIX_CLEAR(MATRIX_DISPLAY_UNIT1);
 
+  HAL_TIM_Base_Start(&htim3); // Starting TIM3 Trig source
   HAL_ADCEx_Calibration_Start(&hadc1);
   HAL_DMA_Init(&hdma_adc1);
 
@@ -191,10 +325,10 @@ int main(void)
   }
 
   status_fft = arm_rfft_fast_init_f32(&fft_instance, FFT_LENGTH);
-  arm_fir_instance_f32 fir;
-  arm_fir_init_f32(&fir, NUM_TAPS, firCoeffs, firState, FFT_LENGTH);
 
-  // arm_blackman_harris_92db_f32(window_coff, FFT_LENGTH);
+  arm_fir_instance_f32 fir;
+  arm_fir_init_f32(&fir, FILTER_TAP_NUM, filter_taps, firState, FFT_LENGTH);
+
   arm_hamming_f32(window_coff, FFT_LENGTH); // Generate Window coefficients
   /* USER CODE END 2 */
 
@@ -205,6 +339,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
+    // Sampling at
     if (adc_dma_flag)
     {
       adc_dma_flag = false;
@@ -213,20 +349,26 @@ int main(void)
       for (int i = 0; i < FFT_LENGTH; i++)
       {
         input_fft[i] = (float32_t)raw_microphone_input[i] - 2048.0f; // Center around 0
-        // input_fft[i] = arm_sin_f32(2.0f * PI * 16 * i / FFT_LENGTH);
+        // input_fft[i] = arm_sin_f32(2.0f * PI * 8 * i / FFT_LENGTH);
       }
-      
+
       // Applying High-pass filter
       arm_fir_f32(&fir, input_fft, input_fft, FFT_LENGTH);
+      // // // arm_iir_lattice_f32(&fir, input_fft, input_fft, FFT_LENGTH);
 
-      for (int i = 0; i < FFT_LENGTH; i++)
-      {
-        input_fft[i] *= window_coff[i]; // Apply Window
-      }
+      // for (int i = 0; i < FFT_LENGTH; i++)
+      // {
+      //   input_fft[i] *= window_coff[i]; // Apply Window
+      // }
 
       arm_rfft_fast_f32(&fft_instance, input_fft, output_fft, 0); // Fast FFT
 
       arm_cmplx_mag_f32(output_fft, output_fft_mag, FFT_LENGTH / 2); // Get mag values
+
+      // for(int i = 0; i < 10; i++)
+      // {
+      //   output_fft_mag[i] *= 0.03f; // supprse them
+      // }
 
       int step = (FFT_LENGTH / 2) / MATRIX_X;
       int c = 0;
@@ -243,7 +385,7 @@ int main(void)
 
       for (int i = 0; i < MATRIX_X; i++)
       {
-        data_avgs[i] = constrain(data_avgs[i], 0, 80);        // set max & min values for buckets
+        data_avgs[i] = constrain(data_avgs[i], 0, 32);        // set max & min values for buckets
         data_avgs[i] = map(data_avgs[i], 0, 32, 0, MATRIX_Y); // remap averaged values to yres
         yvalue = data_avgs[i];
 
@@ -329,7 +471,7 @@ static void MX_ADC1_Init(void)
   hadc1.Init.ScanConvMode = ADC_SCAN_DISABLE;
   hadc1.Init.ContinuousConvMode = ENABLE;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
-  hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+  hadc1.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T3_TRGO;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc1.Init.NbrOfConversion = 1;
   if (HAL_ADC_Init(&hadc1) != HAL_OK)
@@ -421,7 +563,7 @@ static void MX_TIM2_Init(void)
   {
     Error_Handler();
   }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
   {
@@ -430,6 +572,50 @@ static void MX_TIM2_Init(void)
   /* USER CODE BEGIN TIM2_Init 2 */
 
   /* USER CODE END TIM2_Init 2 */
+}
+
+/**
+ * @brief TIM3 Initialization Function
+ * @param None
+ * @retval None
+ */
+static void MX_TIM3_Init(void)
+{
+
+  /* USER CODE BEGIN TIM3_Init 0 */
+
+  /* USER CODE END TIM3_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM3_Init 1 */
+
+  /* USER CODE END TIM3_Init 1 */
+  htim3.Instance = TIM3;
+  htim3.Init.Prescaler = 89;
+  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim3.Init.Period = 99;
+  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+  if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM3_Init 2 */
+
+  /* USER CODE END TIM3_Init 2 */
 }
 
 /**
