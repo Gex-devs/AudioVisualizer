@@ -4371,7 +4371,7 @@
 		(uuid "7697d269-b199-4dc0-9cd9-b2fa7dbbdbf8")
 	)
 	(label "SWCLK"
-		(at 187.96 130.81 180)
+		(at 187.96 135.89 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5809,7 +5809,6 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "6ce0b1a3-f67d-4fe3-aaa6-3fc1f794b7b1")
 		(property "Reference" "#PWR06"
 			(at 199.39 130.81 0)
@@ -5821,12 +5820,13 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 196.85 130.8099 90)
+			(at 190.5 125.984 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
 			)
 		)
 		(property "Footprint" ""
