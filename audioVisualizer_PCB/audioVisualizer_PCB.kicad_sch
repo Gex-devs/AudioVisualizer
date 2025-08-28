@@ -7946,7 +7946,7 @@
 		(dnp no)
 		(uuid "fbfe4c0f-60c1-4f9e-a95d-2b56c4cfbf57")
 		(property "Reference" "J3"
-			(at 178.308 87.376 0)
+			(at 177.292 108.712 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7954,14 +7954,14 @@
 			)
 		)
 		(property "Value" "SPI_MATRIX"
-			(at 179.07 90.17 0)
+			(at 178.054 106.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_1.00mm:PinHeader_1x05_P1.00mm_Vertical"
+		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x05_P2.54mm_Vertical"
 			(at 177.8 99.06 0)
 			(effects
 				(font
