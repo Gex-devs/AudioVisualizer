@@ -13,6 +13,7 @@
 *.kicad_prl
 *.sch-bak
 *~
+audioVisualizer_PCB/Preview/temp.pdf
 _autosave-*
 *.tmp
 *-save.pro

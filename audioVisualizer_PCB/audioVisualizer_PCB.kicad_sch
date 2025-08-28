@@ -4391,7 +4391,7 @@
 		(uuid "85321ccd-fc75-4b74-a124-9c3d5c7d9d19")
 	)
 	(label "SWDIO"
-		(at 189.23 133.35 180)
+		(at 187.96 133.35 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6377,7 +6377,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_1.00mm:PinHeader_1x04_P1.00mm_Vertical"
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical"
 			(at 187.96 133.35 0)
 			(effects
 				(font
@@ -7406,7 +7406,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_1.00mm:PinHeader_1x03_P1.00mm_Horizontal"
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Horizontal"
 			(at 176.53 83.82 0)
 			(effects
 				(font
