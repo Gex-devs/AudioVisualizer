@@ -3513,8 +3513,8 @@
 		)
 	)
 	(rectangle
-		(start 17.145 17.145)
-		(end 71.12 46.355)
+		(start 18.415 17.145)
+		(end 72.39 46.355)
 		(stroke
 			(width 0)
 			(type default)
@@ -3570,7 +3570,7 @@
 	)
 	(text "3V3 Power Supply\n"
 		(exclude_from_sim no)
-		(at 25.908 16.256 0)
+		(at 27.178 16.256 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3615,7 +3615,7 @@
 		(uuid "2ed87621-7062-4fc5-b756-83a61ac00471")
 	)
 	(junction
-		(at 40.64 36.83)
+		(at 41.91 36.83)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4474a957-4945-408c-aa0d-de2820b48a64")
@@ -3633,7 +3633,7 @@
 		(uuid "4ffbff73-a404-43d3-8255-5e7be3b20f8d")
 	)
 	(junction
-		(at 50.8 29.21)
+		(at 52.07 29.21)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "50e9fff0-df5a-4163-8970-00074cc08170")
@@ -3663,7 +3663,7 @@
 		(uuid "7ab2184c-d879-4904-bf75-614752607474")
 	)
 	(junction
-		(at 50.8 36.83)
+		(at 52.07 36.83)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "7b5045c1-3514-4571-aa71-73167bab6295")
@@ -3717,7 +3717,7 @@
 		(uuid "d792dfb4-84ee-4830-80b0-5fa67d82fc08")
 	)
 	(junction
-		(at 30.48 29.21)
+		(at 31.75 29.21)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d94b6a2f-6b37-4c4d-867c-0238b4e9918a")
@@ -3842,7 +3842,7 @@
 	)
 	(wire
 		(pts
-			(xy 64.77 36.83) (xy 50.8 36.83)
+			(xy 66.04 36.83) (xy 52.07 36.83)
 		)
 		(stroke
 			(width 0)
@@ -3932,7 +3932,7 @@
 	)
 	(wire
 		(pts
-			(xy 40.64 39.37) (xy 40.64 36.83)
+			(xy 41.91 39.37) (xy 41.91 36.83)
 		)
 		(stroke
 			(width 0)
@@ -4022,7 +4022,7 @@
 	)
 	(wire
 		(pts
-			(xy 30.48 36.83) (xy 40.64 36.83)
+			(xy 31.75 36.83) (xy 41.91 36.83)
 		)
 		(stroke
 			(width 0)
@@ -4082,7 +4082,7 @@
 	)
 	(wire
 		(pts
-			(xy 40.64 36.83) (xy 50.8 36.83)
+			(xy 41.91 36.83) (xy 52.07 36.83)
 		)
 		(stroke
 			(width 0)
@@ -4172,7 +4172,7 @@
 	)
 	(wire
 		(pts
-			(xy 30.48 29.21) (xy 33.02 29.21)
+			(xy 31.75 29.21) (xy 34.29 29.21)
 		)
 		(stroke
 			(width 0)
@@ -4212,7 +4212,7 @@
 	)
 	(wire
 		(pts
-			(xy 48.26 29.21) (xy 50.8 29.21)
+			(xy 49.53 29.21) (xy 52.07 29.21)
 		)
 		(stroke
 			(width 0)
@@ -4272,7 +4272,7 @@
 	)
 	(wire
 		(pts
-			(xy 50.8 29.21) (xy 57.15 29.21)
+			(xy 52.07 29.21) (xy 58.42 29.21)
 		)
 		(stroke
 			(width 0)
@@ -4302,7 +4302,7 @@
 	)
 	(wire
 		(pts
-			(xy 27.94 29.21) (xy 30.48 29.21)
+			(xy 29.21 29.21) (xy 31.75 29.21)
 		)
 		(stroke
 			(width 0)
@@ -4499,7 +4499,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 50.8 33.02 0)
+		(at 52.07 33.02 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4508,7 +4508,7 @@
 		(fields_autoplaced yes)
 		(uuid "01c6eba8-7c5b-475c-a7a0-3a4d4959ad72")
 		(property "Reference" "C12"
-			(at 54.61 31.7499 0)
+			(at 55.88 31.7499 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4517,7 +4517,7 @@
 			)
 		)
 		(property "Value" "22u"
-			(at 54.61 34.2899 0)
+			(at 55.88 34.2899 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4526,7 +4526,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 51.7652 36.83 0)
+			(at 53.0352 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4535,7 +4535,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 50.8 33.02 0)
+			(at 52.07 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4544,7 +4544,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 50.8 33.02 0)
+			(at 52.07 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4772,7 +4772,7 @@
 	)
 	(symbol
 		(lib_id "power:VBUS")
-		(at 27.94 29.21 90)
+		(at 29.21 29.21 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4781,7 +4781,7 @@
 		(fields_autoplaced yes)
 		(uuid "18261346-1db0-4c08-87cd-9d7c59db5a28")
 		(property "Reference" "#PWR021"
-			(at 31.75 29.21 0)
+			(at 33.02 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4790,7 +4790,7 @@
 			)
 		)
 		(property "Value" "VBUS"
-			(at 24.13 29.2099 90)
+			(at 25.4 29.2099 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4799,7 +4799,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 27.94 29.21 0)
+			(at 29.21 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4808,7 +4808,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 27.94 29.21 0)
+			(at 29.21 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4817,7 +4817,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"VBUS\""
-			(at 27.94 29.21 0)
+			(at 29.21 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5592,7 +5592,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 30.48 33.02 0)
+		(at 31.75 33.02 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5600,7 +5600,7 @@
 		(dnp no)
 		(uuid "62b588d9-8776-4b3f-98af-20785e0066d8")
 		(property "Reference" "C11"
-			(at 23.876 32.004 0)
+			(at 25.146 32.004 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5609,7 +5609,7 @@
 			)
 		)
 		(property "Value" "22u"
-			(at 23.876 34.29 0)
+			(at 25.146 34.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5618,7 +5618,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 31.4452 36.83 0)
+			(at 32.7152 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5627,7 +5627,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 30.48 33.02 0)
+			(at 31.75 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5636,7 +5636,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 30.48 33.02 0)
+			(at 31.75 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5731,7 +5731,7 @@
 	)
 	(symbol
 		(lib_id "Regulator_Linear:HT75xx-1-SOT89")
-		(at 40.64 31.75 0)
+		(at 41.91 31.75 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5740,7 +5740,7 @@
 		(fields_autoplaced yes)
 		(uuid "6b8fb38c-eeed-492b-8b14-c966f0cfd0b2")
 		(property "Reference" "U2"
-			(at 40.64 21.59 0)
+			(at 41.91 21.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5748,7 +5748,7 @@
 			)
 		)
 		(property "Value" "HT7333"
-			(at 40.64 24.13 0)
+			(at 41.91 24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5756,7 +5756,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-89-3"
-			(at 40.64 23.495 0)
+			(at 41.91 23.495 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5766,7 +5766,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.holtek.com/documents/10179/116711/HT75xx-1v250.pdf"
-			(at 40.64 29.21 0)
+			(at 41.91 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5775,7 +5775,7 @@
 			)
 		)
 		(property "Description" "100mA Low Dropout Voltage Regulator, Fixed Output, SOT89"
-			(at 40.64 31.75 0)
+			(at 41.91 31.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6427,7 +6427,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 50.8 29.21 0)
+		(at 52.07 29.21 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6436,7 +6436,7 @@
 		(fields_autoplaced yes)
 		(uuid "8b2879da-132e-4c48-a200-84a33cc1875a")
 		(property "Reference" "#PWR020"
-			(at 50.8 33.02 0)
+			(at 52.07 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6445,7 +6445,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 50.8 24.13 0)
+			(at 52.07 24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6453,7 +6453,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 50.8 29.21 0)
+			(at 52.07 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6462,7 +6462,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 50.8 29.21 0)
+			(at 52.07 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6471,7 +6471,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 50.8 29.21 0)
+			(at 52.07 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6630,7 +6630,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 40.64 39.37 0)
+		(at 41.91 39.37 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6639,7 +6639,7 @@
 		(fields_autoplaced yes)
 		(uuid "9fd41aa5-4a6e-42d8-b4a7-c5822f475d8c")
 		(property "Reference" "#PWR019"
-			(at 40.64 45.72 0)
+			(at 41.91 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6648,7 +6648,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 40.64 44.45 0)
+			(at 41.91 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6656,7 +6656,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 40.64 39.37 0)
+			(at 41.91 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6665,7 +6665,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 40.64 39.37 0)
+			(at 41.91 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6674,7 +6674,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 40.64 39.37 0)
+			(at 41.91 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6834,7 +6834,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 60.96 29.21 180)
+		(at 62.23 29.21 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6843,7 +6843,7 @@
 		(fields_autoplaced yes)
 		(uuid "a5ecd518-cd80-48aa-ba82-a75557e5fdb3")
 		(property "Reference" "D1"
-			(at 62.5475 21.59 0)
+			(at 63.8175 21.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6851,7 +6851,7 @@
 			)
 		)
 		(property "Value" "LED"
-			(at 62.5475 24.13 0)
+			(at 63.8175 24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6859,7 +6859,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_0805_2012Metric"
-			(at 60.96 29.21 0)
+			(at 62.23 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6868,7 +6868,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 60.96 29.21 0)
+			(at 62.23 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6877,7 +6877,7 @@
 			)
 		)
 		(property "Description" "Light emitting diode"
-			(at 60.96 29.21 0)
+			(at 62.23 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6886,7 +6886,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 60.96 29.21 0)
+			(at 62.23 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7868,7 +7868,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 64.77 33.02 0)
+		(at 66.04 33.02 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7877,7 +7877,7 @@
 		(fields_autoplaced yes)
 		(uuid "ee900f23-0ea1-4300-b193-510215d947d1")
 		(property "Reference" "R2"
-			(at 67.31 31.7499 0)
+			(at 68.58 31.7499 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7886,7 +7886,7 @@
 			)
 		)
 		(property "Value" "10"
-			(at 67.31 34.2899 0)
+			(at 68.58 34.2899 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7895,7 +7895,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 62.992 33.02 90)
+			(at 64.262 33.02 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7904,7 +7904,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 64.77 33.02 0)
+			(at 66.04 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7913,7 +7913,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 64.77 33.02 0)
+			(at 66.04 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
