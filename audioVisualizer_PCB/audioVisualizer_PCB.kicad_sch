@@ -2897,6 +2897,356 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Microphone:INMP441ACEZ-R7"
+			(pin_names
+				(offset 1.016)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "MK"
+				(at -12.7 10.795 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Value" "INMP441ACEZ-R7"
+				(at -12.7 -12.7 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Footprint" "INMP441ACEZ-R7:MIC_INMP441ACEZ-R7"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "MF" "TDK InvenSense"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MAXIMUM_PACKAGE_HEIGHT" "1.05 mm"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Package" "LGA-9 TDK InvenSense"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Price" "None"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Check_prices" "https://www.snapeda.com/parts/INMP441ACEZ-R7/TDK/view-part/?ref=eda"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "STANDARD" "Manufacturer Recommendations"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "PARTREV" "1.1"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "SnapEDA_Link" "https://www.snapeda.com/parts/INMP441ACEZ-R7/TDK/view-part/?ref=snap"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MP" "INMP441ACEZ-R7"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Description_1" "60 Hz ~ 15 kHz Digital, I2S Microphone MEMS (Silicon) 1.62 V ~ 3.63 V Omnidirectional (-26dB ±3dB @ 94dB SPL) Solder Pads"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Availability" "In Stock"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MANUFACTURER" "TDK InvenSense"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(symbol "INMP441ACEZ-R7_0_0"
+				(rectangle
+					(start -12.7 -10.16)
+					(end 12.7 10.16)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin input line
+					(at -17.78 2.54 0)
+					(length 5.08)
+					(name "CHIPEN"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -17.78 -2.54 0)
+					(length 5.08)
+					(name "L/R"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 7.62 180)
+					(length 5.08)
+					(name "VDD"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin input clock
+					(at 17.78 2.54 180)
+					(length 5.08)
+					(name "SCK"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 17.78 0 180)
+					(length 5.08)
+					(name "SD"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 17.78 -2.54 180)
+					(length 5.08)
+					(name "WS"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -7.62 180)
+					(length 5.08)
+					(name "GND"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -7.62 180)
+					(length 5.08)
+					(name "GND"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -7.62 180)
+					(length 5.08)
+					(name "GND"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "9"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Regulator_Linear:HT75xx-1-SOT89"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -4516,7 +4866,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "22u"
+		(property "Value" "10u"
 			(at 55.88 34.2899 0)
 			(effects
 				(font
@@ -5032,6 +5382,216 @@
 			(project "audioVisualizer_PCB"
 				(path "/8779f4c0-fa76-4e9c-9285-12099bba0fb4"
 					(reference "#PWR012")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Microphone:INMP441ACEZ-R7")
+		(at 36.83 128.27 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "338c17f8-3365-4203-98c2-6c78b80f2291")
+		(property "Reference" "MK1"
+			(at 36.83 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "INMP441ACEZ-R7"
+			(at 36.83 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Microphone:MIC_INMP441ACEZ-R7"
+			(at 36.83 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 36.83 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 36.83 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MF" "TDK InvenSense"
+			(at 36.83 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MAXIMUM_PACKAGE_HEIGHT" "1.05 mm"
+			(at 36.83 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Package" "LGA-9 TDK InvenSense"
+			(at 36.83 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Price" "None"
+			(at 36.83 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Check_prices" "https://www.snapeda.com/parts/INMP441ACEZ-R7/TDK/view-part/?ref=eda"
+			(at 36.83 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "STANDARD" "Manufacturer Recommendations"
+			(at 36.83 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PARTREV" "1.1"
+			(at 36.83 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SnapEDA_Link" "https://www.snapeda.com/parts/INMP441ACEZ-R7/TDK/view-part/?ref=snap"
+			(at 36.83 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MP" "INMP441ACEZ-R7"
+			(at 36.83 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "60 Hz ~ 15 kHz Digital, I2S Microphone MEMS (Silicon) 1.62 V ~ 3.63 V Omnidirectional (-26dB ±3dB @ 94dB SPL) Solder Pads"
+			(at 36.83 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Availability" "In Stock"
+			(at 36.83 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "TDK InvenSense"
+			(at 36.83 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "727c517a-6e6c-4765-b3b5-73a6a4c12282")
+		)
+		(pin "9"
+			(uuid "218d3b59-0e37-40d9-9c12-5af0d52a8ab5")
+		)
+		(pin "8"
+			(uuid "97497f06-7b5a-4c61-9971-ef0987342afd")
+		)
+		(pin "5"
+			(uuid "7512ff19-c056-410a-b834-e859e35b89b2")
+		)
+		(pin "6"
+			(uuid "f7266dd9-9d13-422d-9c7f-38a7fdd7599a")
+		)
+		(pin "7"
+			(uuid "1998d267-0651-47bc-b133-ea1e52439ccc")
+		)
+		(pin "4"
+			(uuid "2027baa8-d19f-44a1-bbf6-093f095f1fd5")
+		)
+		(pin "3"
+			(uuid "9e678770-1feb-4643-8762-16b7a4c87937")
+		)
+		(pin "2"
+			(uuid "61a6c353-ba5c-42d9-9657-8dadf43d1456")
+		)
+		(instances
+			(project ""
+				(path "/8779f4c0-fa76-4e9c-9285-12099bba0fb4"
+					(reference "MK1")
 					(unit 1)
 				)
 			)
@@ -5608,7 +6168,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "22u"
+		(property "Value" "10u"
 			(at 25.146 34.29 0)
 			(effects
 				(font
@@ -7313,6 +7873,76 @@
 	)
 	(symbol
 		(lib_id "Device:C")
+		(at 26.67 152.4 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c85d704c-f4d5-4244-992c-ac078f633ecb")
+		(property "Reference" "C14"
+			(at 30.48 151.1299 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "C"
+			(at 30.48 153.6699 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 27.6352 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 26.67 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 26.67 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "3baa1ea5-4a75-405e-8cd0-a10c4ba7d36b")
+		)
+		(pin "1"
+			(uuid "9f7f1da7-72f3-4554-ab1f-2df494f377cd")
+		)
+		(instances
+			(project ""
+				(path "/8779f4c0-fa76-4e9c-9285-12099bba0fb4"
+					(reference "C14")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
 		(at 77.47 85.09 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -7376,6 +8006,76 @@
 			(project ""
 				(path "/8779f4c0-fa76-4e9c-9285-12099bba0fb4"
 					(reference "C13")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 46.99 153.67 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d2e5e6c8-3dd8-4a56-ae21-0b3a479b850f")
+		(property "Reference" "R1"
+			(at 49.53 152.3999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "R"
+			(at 49.53 154.9399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 45.212 153.67 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 46.99 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 46.99 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "63b8690d-e713-4615-a397-3febea4d1416")
+		)
+		(pin "2"
+			(uuid "70aa019f-ac3d-439c-beae-e86dc4ce51b9")
+		)
+		(instances
+			(project ""
+				(path "/8779f4c0-fa76-4e9c-9285-12099bba0fb4"
+					(reference "R1")
 					(unit 1)
 				)
 			)
