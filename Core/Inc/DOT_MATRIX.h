@@ -15,7 +15,7 @@
 #define DOT_MATRIX_H_
 
 // Replace The "#include" File Below With The CPU Relevant One For Your Board
-#include "stm32f1xx.h"
+#include "stm32f4xx.h"
 
 // The Number OF Separate DOT MATRIX Units (Whether Single or Cascaded) To Be Used In The Project
 #define DOT_MATRIX_UNITS  1
