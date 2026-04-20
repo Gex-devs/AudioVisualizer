@@ -1,8 +1,8 @@
 /**
   ******************************************************************************
-  * @file      startup_stm32f401xe.s
+  * @file      startup_stm32f401xc.s
   * @author    MCD Application Team
-  * @brief     STM32F401xExx Devices vector table for GCC based toolchains. 
+  * @brief     STM32F401xCxx Devices vector table for GCC based toolchains. 
   *            This module performs:
   *                - Set the initial SP
   *                - Set the initial PC == Reset_Handler,
@@ -58,8 +58,8 @@ defined in linker script */
   .weak  Reset_Handler
   .type  Reset_Handler, %function
 Reset_Handler:  
-  ldr   sp, =_estack    		 /* set stack pointer */
-
+  ldr   sp, =_estack      /* set stack pointer */
+  
 /* Call the clock system initialization function.*/
   bl  SystemInit  
 
@@ -93,7 +93,7 @@ FillZerobss:
 LoopFillZerobss:
   cmp r2, r4
   bcc FillZerobss
- 
+
 /* Call static constructors */
     bl __libc_init_array
 /* Call the application's entry point.*/
@@ -160,8 +160,8 @@ g_pfnVectors:
   .word     DMA1_Stream4_IRQHandler           /* DMA1 Stream 4                */                   
   .word     DMA1_Stream5_IRQHandler           /* DMA1 Stream 5                */                   
   .word     DMA1_Stream6_IRQHandler           /* DMA1 Stream 6                */                   
-  .word     ADC_IRQHandler                    /* ADC1, ADC2 and ADC3s         */                   
-  .word     0               				  /* Reserved                      */                         
+  .word     ADC_IRQHandler                    /* ADC1                         */                   
+  .word     0               				  /* Reserved                     */                         
   .word     0              					  /* Reserved                     */                          
   .word     0                                 /* Reserved                     */                          
   .word     0                                 /* Reserved                     */                          
@@ -181,13 +181,13 @@ g_pfnVectors:
   .word     SPI2_IRQHandler                   /* SPI2                         */                   
   .word     USART1_IRQHandler                 /* USART1                       */                   
   .word     USART2_IRQHandler                 /* USART2                       */                   
-  .word     0               				  /* Reserved                       */                   
+  .word     0               				  /* Reserved                     */                   
   .word     EXTI15_10_IRQHandler              /* External Line[15:10]s        */                          
   .word     RTC_Alarm_IRQHandler              /* RTC Alarm (A and B) through EXTI Line */                 
   .word     OTG_FS_WKUP_IRQHandler            /* USB OTG FS Wakeup through EXTI line */                       
-  .word     0                                 /* Reserved     				  */         
-  .word     0                                 /* Reserved       			  */         
-  .word     0                                 /* Reserved 					  */
+  .word     0                                 /* Reserved     				        */         
+  .word     0                                 /* Reserved       			        */         
+  .word     0                                 /* Reserved 					          */
   .word     0                                 /* Reserved                     */                          
   .word     DMA1_Stream7_IRQHandler           /* DMA1 Stream7                 */                          
   .word     0                                 /* Reserved                     */                   
@@ -203,12 +203,12 @@ g_pfnVectors:
   .word     DMA2_Stream2_IRQHandler           /* DMA2 Stream 2                */                   
   .word     DMA2_Stream3_IRQHandler           /* DMA2 Stream 3                */                   
   .word     DMA2_Stream4_IRQHandler           /* DMA2 Stream 4                */                   
-  .word     0                    			  /* Reserved                     */                   
-  .word     0              					  /* Reserved                     */                     
-  .word     0              					  /* Reserved                     */                          
-  .word     0             					  /* Reserved                     */                          
-  .word     0              					  /* Reserved                     */                          
-  .word     0              					  /* Reserved                     */                          
+  .word     0                    			        /* Reserved                     */                   
+  .word     0              					          /* Reserved                     */                     
+  .word     0              					          /* Reserved                     */                          
+  .word     0             					          /* Reserved                     */                          
+  .word     0              					          /* Reserved                     */                          
+  .word     0              					          /* Reserved                     */                          
   .word     OTG_FS_IRQHandler                 /* USB OTG FS                   */                   
   .word     DMA2_Stream5_IRQHandler           /* DMA2 Stream 5                */                   
   .word     DMA2_Stream6_IRQHandler           /* DMA2 Stream 6                */                   

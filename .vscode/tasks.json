@@ -1,4 +1,3 @@
-
 {
     "version": "2.0.0",
     "tasks": [
@@ -105,6 +104,12 @@
             "dependsOn": [
                 "Build all"
             ]
+        },
+        {
+            "label": "start-openocd",
+            "type": "shell",
+            "command": "ssh mini.pc 'openocd -f interface/cmsis-dap.cfg -f target/stm32f4x.cfg'",
+            "isBackground": true
         }
     ]
 }
