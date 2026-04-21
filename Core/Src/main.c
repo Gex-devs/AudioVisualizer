@@ -45,6 +45,10 @@
 #define BUFFER_SIZE (FFT_LENGTH * 2) // I2S data is 16-bit stereo, so we need twice the FFT length for the buffer
 #define MATRIX_X 32
 #define MATRIX_Y 8
+
+#define SAMPLE_RATE 16000.0f
+#define MIN_FREQ 4000.0f
+#define MAX_FREQ 8000.0f
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -59,6 +63,8 @@ TIM_HandleTypeDef htim2;
 /* USER CODE BEGIN PV */
 uint16_t raw_microphone_input[FFT_LENGTH];
 bool status = false;
+bool i2s_dma_full_flag = false;
+bool i2s_dma_half_flag = false;
 arm_rfft_fast_instance_f32 fft_instance;
 arm_status status_fft;
 arm_fir_instance_f32 fir;
@@ -66,7 +72,15 @@ arm_fir_instance_f32 fir;
 float32_t input_fft[FFT_LENGTH];
 float32_t output_fft[FFT_LENGTH];
 float32_t output_fft_mag[FFT_LENGTH / 2];
+float32_t output_bins[MATRIX_X];
 uint16_t i2s_buffer[BUFFER_SIZE];
+
+typedef struct
+{
+  int bin_low;
+  int bin_high;
+} LogBinMap;
+LogBinMap lut[MATRIX_X];
 
 float32_t window_coff[FFT_LENGTH];
 
@@ -78,32 +92,50 @@ int displaycolumn, displayvalue;
 
 int MY_ARRAY[] = {0, 128, 192, 224, 240, 248, 252, 254, 255};
 
-bool i2s_dma_full_flag = false;
-bool i2s_dma_half_flag = false;
-/*
+void build_log_bin_lut(LogBinMap *lut, int NUM_BINS)
+{
+  int fft_bins = FFT_LENGTH / 2;
+  float32_t freq_resolution = SAMPLE_RATE / (float32_t)FFT_LENGTH;
 
-FIR filter designed with
-http://t-filter.appspot.com
+  float32_t log_min = log2f(MIN_FREQ);
+  float32_t log_max = log2f(MAX_FREQ);
+  float32_t log_range = log_max - log_min;
 
-sampling frequency: 8000 Hz
+  for (int i = 0; i < NUM_BINS; i++)
+  {
+    float32_t freq_low = powf(2.0f, log_min + (float32_t)i / NUM_BINS * log_range);
+    float32_t freq_high = powf(2.0f, log_min + (float32_t)(i + 1) / NUM_BINS * log_range);
 
-* 0 Hz - 1200 Hz
-  gain = 0
-  desired attenuation = -45 dB
-  actual attenuation = -47.35344673133169 dB
+    int bin_low = (int)floorf(freq_low / freq_resolution);
+    int bin_high = (int)ceilf(freq_high / freq_resolution);
 
-* 1300 Hz - 1400 Hz
-  gain = 1
-  desired ripple = 5 dB
-  actual ripple = 3.129857707910803 dB
+    bin_low = bin_low < 0 ? 0 : bin_low;
+    bin_high = bin_high >= fft_bins ? fft_bins - 1 : bin_high;
 
-* 1500 Hz - 4000 Hz
-  gain = 0
-  desired attenuation = -45 dB
-  actual attenuation = -47.35344673133169 dB
+    if (bin_low > bin_high)
+      bin_high = bin_low;
 
-*/
+    lut[i].bin_low = bin_low;
+    lut[i].bin_high = bin_high;
+  }
+}
 
+void rebin_log_audio(float *fft_mag, float *rebin, const LogBinMap *lut, int NUM_BINS)
+{
+  for (int i = 0; i < NUM_BINS; i++)
+  {
+    int bin_low = lut[i].bin_low;
+    int bin_high = lut[i].bin_high;
+
+    float32_t sum = 0.0f;
+    int count = bin_high - bin_low + 1;
+
+    for (int j = bin_low; j <= bin_high; j++)
+      sum += fft_mag[j];
+
+    rebin[i] = sum / (float32_t)count;
+  }
+}
 #define FILTER_TAP_NUM 109
 
 static float filter_taps[FILTER_TAP_NUM] = {
@@ -258,14 +290,6 @@ uint8_t reverse_bits(uint8_t b)
   b = (b & 0xAA) >> 1 | (b & 0x55) << 1;
   return b;
 }
-#define SAMPLE_RATE 8000 // Hz
-#define FREQ 440         // A4 note
-
-float current_phase = 0.0f; // Global or static to retain between calls
-// ─── Synthetic Test Signal Generator ─────────────────────────────────────────
-// Call this in while(1) instead of process_audio_data() to test the display.
-// It generates a sine wave at a fixed frequency, runs it through the FFT
-// pipeline, and calls your audio_visualizer_update() to drive the matrix.
 
 void test_visualizer_sine(void)
 {
@@ -305,12 +329,11 @@ void test_visualizer_sine(void)
 
   HAL_Delay(80);
 }
-
 void process_audio_data(uint16_t *local_i2s_buffer)
 {
 
   // This function can be called in the main loop or a timer interrupt
-  for (int i = 0, k = 0; k < FFT_LENGTH ; i += 4, k++)
+  for (int i = 0, k = 0; k < FFT_LENGTH; i += 4, k++)
   {
     // int32_t left = (((uint32_t)local_i2s_buffer[i] << 16) | local_i2s_buffer[i + 1]) >> 8;      // 24bit left channel audio frame
     int32_t right = (((int32_t)local_i2s_buffer[i + 2] << 16) | local_i2s_buffer[i + 3]) >> 8; // 24bit right channel audio frame
@@ -323,19 +346,18 @@ void process_audio_data(uint16_t *local_i2s_buffer)
   // Applying High-pass filter
   // arm_fir_f32(&fir, input_fft, input_fft, FFT_LENGTH);
 
-  
   float mean = 0;
   for (int i = 0; i < FFT_LENGTH; i++)
   {
     mean += input_fft[i]; // Calculate mean for DC offset removal
   }
   mean /= FFT_LENGTH;
-  
+
   for (int i = 0; i < FFT_LENGTH; i++)
   {
     input_fft[i] -= mean; // DC offset removal
   }
-  
+
   for (int i = 0; i < FFT_LENGTH; i++)
   {
     input_fft[i] *= window_coff[i]; // Apply Window
@@ -344,7 +366,8 @@ void process_audio_data(uint16_t *local_i2s_buffer)
   arm_rfft_fast_f32(&fft_instance, input_fft, output_fft, 0);    // Fast FFT
   arm_cmplx_mag_f32(output_fft, output_fft_mag, FFT_LENGTH / 2); // Get mag values
 
-  audio_visualizer_update(output_fft_mag); // Update display based on FFT results
+  rebin_log_audio(output_fft_mag, output_bins, lut, MATRIX_X); // Optional: re-bin FFT magnitudes into logarithmic frequency bins matching the display columns
+  audio_visualizer_update(output_bins);                        // Update display based on FFT results
 }
 
 void audio_visualizer_update(float32_t *output_fft_mag)
@@ -444,6 +467,8 @@ int main(void)
   arm_fir_init_f32(&fir, FILTER_TAP_NUM, filter_taps, firState, FFT_LENGTH);
 
   arm_hamming_f32(window_coff, FFT_LENGTH); // Generate Window coefficients
+  build_log_bin_lut(lut, MATRIX_X);
+
   HAL_I2S_Receive_DMA(&hi2s2, (uint16_t *)i2s_buffer, BUFFER_SIZE);
   /* USER CODE END 2 */
 
