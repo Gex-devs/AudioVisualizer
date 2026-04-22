@@ -24,13 +24,17 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-#include "DOT_MATRIX.h"
 #include <arm_math.h>
+#include <arduino_utils.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+typedef struct
+{
+  int bin_low;
+  int bin_high;
+} LogBinMap;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -61,13 +65,12 @@ TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
-uint16_t raw_microphone_input[FFT_LENGTH];
-bool status = false;
 bool i2s_dma_full_flag = false;
 bool i2s_dma_half_flag = false;
-arm_rfft_fast_instance_f32 fft_instance;
+
 arm_status status_fft;
 arm_fir_instance_f32 fir;
+arm_rfft_fast_instance_f32 fft_instance;
 
 float32_t input_fft[FFT_LENGTH];
 float32_t output_fft[FFT_LENGTH];
@@ -75,11 +78,6 @@ float32_t output_fft_mag[FFT_LENGTH / 2];
 float32_t output_bins[MATRIX_X];
 uint16_t i2s_buffer[BUFFER_SIZE];
 
-typedef struct
-{
-  int bin_low;
-  int bin_high;
-} LogBinMap;
 LogBinMap lut[MATRIX_X];
 
 float32_t window_coff[FFT_LENGTH];
@@ -136,118 +134,48 @@ void rebin_log_audio(float *fft_mag, float *rebin, const LogBinMap *lut, int NUM
     rebin[i] = sum / (float32_t)count;
   }
 }
-#define FILTER_TAP_NUM 109
+  /*
 
-static float filter_taps[FILTER_TAP_NUM] = {
-    0.0009546973999630191,
-    0.003168463762582948,
-    -0.00014550904213110895,
-    -0.0017745426915630291,
-    -0.002664106543097514,
-    -0.00036921593047873914,
-    0.003018132083844269,
-    0.003850383032839122,
-    0.0003728120301078761,
-    -0.004458838069926212,
-    -0.005326982598694947,
-    -0.0002608863102040281,
-    0.006246838898338785,
-    0.007030902140359828,
-    0.0000012699594340840336,
-    -0.008400842352906581,
-    -0.008926052876460491,
-    0.0004439041844444118,
-    0.010910045918458835,
-    0.010959999083078232,
-    -0.001107982528777111,
-    -0.013743212798719732,
-    -0.013065879748489363,
-    0.00201720111617057,
-    0.01684902548044834,
-    0.015164746414713071,
-    -0.0031873034645785326,
-    -0.020153081865200102,
-    -0.017170818908960734,
-    0.004616256862906045,
-    0.023564130118216217,
-    0.018999989034372274,
-    -0.006289433783701813,
-    -0.02697561269817318,
-    -0.020566141122448665,
-    0.008171691693646257,
-    0.03026645273348758,
-    0.02179714590281802,
-    -0.010211816983530925,
-    -0.03331727937348779,
-    -0.02263070427420169,
-    0.012345268053275658,
-    0.03600596240989731,
-    0.023026005012736047,
-    -0.014490320751035603,
-    -0.03822778476732951,
-    -0.022961285857759466,
-    0.016563922334333316,
-    0.03988647733784863,
-    0.022439122204093522,
-    -0.01847596424486482,
-    -0.04091237110489502,
-    -0.021484839554491906,
-    0.020143026983816276,
-    0.04125859582635884,
-    0.020143026983816276,
-    -0.021484839554491906,
-    -0.04091237110489502,
-    -0.01847596424486482,
-    0.022439122204093522,
-    0.03988647733784863,
-    0.016563922334333316,
-    -0.022961285857759466,
-    -0.03822778476732951,
-    -0.014490320751035603,
-    0.023026005012736047,
-    0.03600596240989731,
-    0.012345268053275658,
-    -0.02263070427420169,
-    -0.03331727937348779,
-    -0.010211816983530925,
-    0.02179714590281802,
-    0.03026645273348758,
-    0.008171691693646257,
-    -0.020566141122448665,
-    -0.02697561269817318,
-    -0.006289433783701813,
-    0.018999989034372274,
-    0.023564130118216217,
-    0.004616256862906045,
-    -0.017170818908960734,
-    -0.020153081865200102,
-    -0.0031873034645785326,
-    0.015164746414713071,
-    0.01684902548044834,
-    0.00201720111617057,
-    -0.013065879748489363,
-    -0.013743212798719732,
-    -0.001107982528777111,
-    0.010959999083078232,
-    0.010910045918458835,
-    0.0004439041844444118,
-    -0.008926052876460491,
-    -0.008400842352906581,
-    0.0000012699594340840336,
-    0.007030902140359828,
-    0.006246838898338785,
-    -0.0002608863102040281,
-    -0.005326982598694947,
-    -0.004458838069926212,
-    0.0003728120301078761,
-    0.003850383032839122,
-    0.003018132083844269,
-    -0.00036921593047873914,
-    -0.002664106543097514,
-    -0.0017745426915630291,
-    -0.00014550904213110895,
-    0.003168463762582948,
-    0.0009546973999630191};
+  FIR filter designed with
+  http://t-filter.appspot.com
+
+  sampling frequency: 16000 Hz
+
+  * 0 Hz - 3000 Hz
+    gain = 0
+    desired attenuation = -40 dB
+    actual attenuation = -41.44566068037808 dB
+
+  * 4000 Hz - 8000 Hz
+    gain = 1
+    desired ripple = 5 dB
+    actual ripple = 3.5163656958569183 dB
+
+  */
+
+  #define FILTER_TAP_NUM 19
+
+  static float32_t filter_taps[FILTER_TAP_NUM] = {
+      -0.01286737409931033,
+      -0.011582917042481518,
+      0.0709435597229363,
+      -0.05850997474212666,
+      -0.040910558942368495,
+      0.03894710089289564,
+      0.0947634922313574,
+      -0.04258608472470373,
+      -0.31412123784627477,
+      0.543381234624982,
+      -0.31412123784627477,
+      -0.04258608472470373,
+      0.0947634922313574,
+      0.03894710089289564,
+      -0.040910558942368495,
+      -0.05850997474212666,
+      0.0709435597229363,
+      -0.011582917042481518,
+      -0.01286737409931033};
+
 
 float32_t firState[FILTER_TAP_NUM + FFT_LENGTH - 1];
 
@@ -263,34 +191,12 @@ static void MX_TIM1_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 void audio_visualizer_update(float32_t *fft_magnitudes);
-void process_audio_data(uint16_t *local_i2s_buffer);
+void process_audio_data(uint16_t *local_i2s_buffer, float32_t *output_fft_mag);
 void test_visualizer_sine(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-long map(long x, long in_min, long in_max, long out_min, long out_max)
-{
-  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-}
-
-long constrain(long x, long a, long b)
-{
-  if (x < a)
-    return a;
-  if (x > b)
-    return b;
-  return x;
-}
-
-uint8_t reverse_bits(uint8_t b)
-{
-  b = (b & 0xF0) >> 4 | (b & 0x0F) << 4;
-  b = (b & 0xCC) >> 2 | (b & 0x33) << 2;
-  b = (b & 0xAA) >> 1 | (b & 0x55) << 1;
-  return b;
-}
-
 void test_visualizer_sine(void)
 {
   static float32_t sweep_freq = 200.0f;
@@ -329,18 +235,29 @@ void test_visualizer_sine(void)
 
   HAL_Delay(80);
 }
-void process_audio_data(uint16_t *local_i2s_buffer)
-{
 
-  // This function can be called in the main loop or a timer interrupt
+/**
+ * @brief input i2s buffer, reconstuct and return magnitude, implemented for inmp411
+ * @return float32_t
+ */
+void process_audio_data(uint16_t *local_i2s_buffer, float32_t *output_fft_mag)
+{
   for (int i = 0, k = 0; k < FFT_LENGTH; i += 4, k++)
   {
-    // int32_t left = (((uint32_t)local_i2s_buffer[i] << 16) | local_i2s_buffer[i + 1]) >> 8;      // 24bit left channel audio frame
+    // Reconsturcting audio data frame 24-bits MSB
+    int32_t left = (((int32_t)local_i2s_buffer[i] << 16) | local_i2s_buffer[i + 1]) >> 8;      // 24bit left channel audio frame
     int32_t right = (((int32_t)local_i2s_buffer[i + 2] << 16) | local_i2s_buffer[i + 3]) >> 8; // 24bit right channel audio frame
-    int32_t sample = (float32_t)right;
+    // int32_t sample = (float32_t)right;
+
+    // squre the audio channels
+    right = right * right; // R^2
+    left = left * left;    // L^2
+
+    // root mean square https://en.wikipedia.org/wiki/Root_mean_square
+    double rms = sqrt((left + right) / 2);
     // int32_t sample = (left + right) / 2; // average
 
-    input_fft[k] = (float32_t)sample; // Store in FFT input buffer as float
+    input_fft[k] = (float32_t)rms; // Store in FFT input buffer as float
   }
 
   // Applying High-pass filter
@@ -364,10 +281,8 @@ void process_audio_data(uint16_t *local_i2s_buffer)
   }
 
   arm_rfft_fast_f32(&fft_instance, input_fft, output_fft, 0);    // Fast FFT
+  // arm_fir_f32(&fir, output_fft, output_fft, FFT_LENGTH);         // apply filter
   arm_cmplx_mag_f32(output_fft, output_fft_mag, FFT_LENGTH / 2); // Get mag values
-
-  rebin_log_audio(output_fft_mag, output_bins, lut, MATRIX_X); // Optional: re-bin FFT magnitudes into logarithmic frequency bins matching the display columns
-  audio_visualizer_update(output_bins);                        // Update display based on FFT results
 }
 
 void audio_visualizer_update(float32_t *output_fft_mag)
@@ -462,11 +377,14 @@ int main(void)
   DOT_MATRIX_Init_TMR(&hspi1, &htim2);
   MATRIX_CLEAR(MATRIX_DISPLAY_UNIT1);
 
+  // Create fast fft instance
   status_fft = arm_rfft_fast_init_f32(&fft_instance, FFT_LENGTH);
 
   arm_fir_init_f32(&fir, FILTER_TAP_NUM, filter_taps, firState, FFT_LENGTH);
 
   arm_hamming_f32(window_coff, FFT_LENGTH); // Generate Window coefficients
+
+  // build lut for log rebinning
   build_log_bin_lut(lut, MATRIX_X);
 
   HAL_I2S_Receive_DMA(&hi2s2, (uint16_t *)i2s_buffer, BUFFER_SIZE);
@@ -480,16 +398,26 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     // Sampling at
-    // if (i2s_dma_half_flag)
-    // {
-    //   process_audio_data(&i2s_buffer[0]); // Process first half of the buffer
-    //   i2s_dma_half_flag = false;
-    //   // Sample microphone input
-    // }
+    if (i2s_dma_half_flag)
+    {
+      float32_t out_mag[FFT_LENGTH / 2];
+      float32_t output_bins[FFT_LENGTH / 2];
+
+      process_audio_data(&i2s_buffer[0], &out_mag[0]); // Process second half of the buffer
+      rebin_log_audio(out_mag, output_bins, lut, MATRIX_X); // Optional: re-bin FFT magnitudes into logarithmic frequency bins matching the display columns
+      audio_visualizer_update(output_bins);   
+      i2s_dma_half_flag = false;
+      // Sample microphone input
+    }
 
     if (i2s_dma_full_flag)
     {
-      process_audio_data(&i2s_buffer[0]); // Process second half of the buffer
+      float32_t out_mag[FFT_LENGTH / 2];
+      float32_t output_bins[FFT_LENGTH / 2];
+
+      process_audio_data(&i2s_buffer[0], &out_mag[0]); // Process second half of the buffer
+      rebin_log_audio(out_mag, output_bins, lut, MATRIX_X); // Optional: re-bin FFT magnitudes into logarithmic frequency bins matching the display columns
+      audio_visualizer_update(output_bins);                        // Update display based on FFT results
       i2s_dma_full_flag = false;
       // Sample microphone input
     }

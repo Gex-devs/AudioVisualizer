@@ -21,6 +21,9 @@
         "interface/cmsis-dap.cfg",
         "target/stm32f4x.cfg"
       ],
+      "osx": {
+        "gdbPath": "/opt/homebrew/bin/arm-none-eabi-gdb"
+      },
       // "preLaunchTask": "start-openocd",
       "liveWatch": {
         "enabled": false,
