@@ -51,8 +51,8 @@ typedef struct
 #define MATRIX_Y 8
 
 #define SAMPLE_RATE 16000.0f
-#define MIN_FREQ 4000.0f
-#define MAX_FREQ 8000.0f
+#define MIN_FREQ 2000.0f
+#define MAX_FREQ 7000.0f
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -191,7 +191,7 @@ static void MX_TIM1_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 void audio_visualizer_update(float32_t *fft_magnitudes);
-void process_audio_data(uint16_t *local_i2s_buffer, float32_t *output_fft_mag);
+void process_audio_data(float32_t *output_fft_mag);
 void test_visualizer_sine(void);
 /* USER CODE END PFP */
 
@@ -240,13 +240,13 @@ void test_visualizer_sine(void)
  * @brief input i2s buffer, reconstuct and return magnitude, implemented for inmp411
  * @return float32_t
  */
-void process_audio_data(uint16_t *local_i2s_buffer, float32_t *output_fft_mag)
+void process_audio_data(float32_t *output_fft_mag)
 {
   for (int i = 0, k = 0; k < FFT_LENGTH; i += 4, k++)
   {
     // Reconsturcting audio data frame 24-bits MSB
-    int32_t left = (((int32_t)local_i2s_buffer[i] << 16) | local_i2s_buffer[i + 1]) >> 8;      // 24bit left channel audio frame
-    int32_t right = (((int32_t)local_i2s_buffer[i + 2] << 16) | local_i2s_buffer[i + 3]) >> 8; // 24bit right channel audio frame
+    int32_t left = (((int32_t)i2s_buffer[i] << 16) | i2s_buffer[i + 1]) >> 8;      // 24bit left channel audio frame
+    int32_t right = (((int32_t)i2s_buffer[i + 2] << 16) | i2s_buffer[i + 3]) >> 8; // 24bit right channel audio frame
     // int32_t sample = (float32_t)right;
 
     // squre the audio channels
@@ -254,10 +254,10 @@ void process_audio_data(uint16_t *local_i2s_buffer, float32_t *output_fft_mag)
     left = left * left;    // L^2
 
     // root mean square https://en.wikipedia.org/wiki/Root_mean_square
-    double rms = sqrt((left + right) / 2);
+    double sample = sqrt((left + right) / 2);
     // int32_t sample = (left + right) / 2; // average
 
-    input_fft[k] = (float32_t)rms; // Store in FFT input buffer as float
+    input_fft[k] = (float32_t)sample; // Store in FFT input buffer as float
   }
 
   // Applying High-pass filter
@@ -284,6 +284,7 @@ void process_audio_data(uint16_t *local_i2s_buffer, float32_t *output_fft_mag)
   // arm_fir_f32(&fir, output_fft, output_fft, FFT_LENGTH);         // apply filter
   arm_cmplx_mag_f32(output_fft, output_fft_mag, FFT_LENGTH / 2); // Get mag values
 }
+
 
 void audio_visualizer_update(float32_t *output_fft_mag)
 {
@@ -387,7 +388,7 @@ int main(void)
   // build lut for log rebinning
   build_log_bin_lut(lut, MATRIX_X);
 
-  HAL_I2S_Receive_DMA(&hi2s2, (uint16_t *)i2s_buffer, BUFFER_SIZE);
+  HAL_I2S_Receive_DMA(&hi2s2, i2s_buffer, BUFFER_SIZE);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -398,26 +399,26 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     // Sampling at
-    if (i2s_dma_half_flag)
-    {
-      float32_t out_mag[FFT_LENGTH / 2];
-      float32_t output_bins[FFT_LENGTH / 2];
+    // if (i2s_dma_half_flag)
+    // {
+    //   float32_t out_mag[FFT_LENGTH / 2];
+    //   float32_t output_bins[FFT_LENGTH / 2];
 
-      process_audio_data(&i2s_buffer[0], &out_mag[0]); // Process second half of the buffer
-      rebin_log_audio(out_mag, output_bins, lut, MATRIX_X); // Optional: re-bin FFT magnitudes into logarithmic frequency bins matching the display columns
-      audio_visualizer_update(output_bins);   
-      i2s_dma_half_flag = false;
-      // Sample microphone input
-    }
+    //   process_audio_data(&i2s_buffer[0], &out_mag[0]); // Process second half of the buffer
+    //   rebin_log_audio(out_mag, output_bins, lut, MATRIX_X); // Optional: re-bin FFT magnitudes into logarithmic frequency bins matching the display columns
+    //   audio_visualizer_update(output_bins);   
+    //   i2s_dma_half_flag = false;
+    //   // Sample microphone input
+    // }
 
     if (i2s_dma_full_flag)
     {
       float32_t out_mag[FFT_LENGTH / 2];
-      float32_t output_bins[FFT_LENGTH / 2];
+      // float32_t output_bins[FFT_LENGTH / 2];
 
-      process_audio_data(&i2s_buffer[0], &out_mag[0]); // Process second half of the buffer
-      rebin_log_audio(out_mag, output_bins, lut, MATRIX_X); // Optional: re-bin FFT magnitudes into logarithmic frequency bins matching the display columns
-      audio_visualizer_update(output_bins);                        // Update display based on FFT results
+      process_audio_data(out_mag); // Process second half of the buffer
+      rebin_log_audio(out_mag, out_mag, lut, MATRIX_X); // Optional: re-bin FFT magnitudes into logarithmic frequency bins matching the display columns
+      audio_visualizer_update(out_mag);                        // Update display based on FFT results
       i2s_dma_full_flag = false;
       // Sample microphone input
     }
