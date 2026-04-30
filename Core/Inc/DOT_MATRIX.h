@@ -28,7 +28,7 @@
 // DOT Matrix Timer Base Options
 #define MATRIX_TIMER_EN   1
 #define MATRIX_TIMER      TIM2
-#define MATRIX_TIMER_CLK  72
+#define MATRIX_TIMER_CLK  84
 #define MATRIX_TIME_BASE  1
 
 // DOT Matrix Other Definitions

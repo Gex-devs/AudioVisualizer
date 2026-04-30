@@ -672,17 +672,13 @@
         "uuid": "8779f4c0-fa76-4e9c-9285-12099bba0fb4"
       }
     ],
-    "used_designators": "",
+    "used_designators": "R1,R3,#PWR11-13,C14-17",
     "variants": []
   },
   "sheets": [
     [
       "8779f4c0-fa76-4e9c-9285-12099bba0fb4",
       "audioVisualizer_PCB"
-    ],
-    [
-      "028f2abd-a5cb-4943-865e-b5b77defdb93",
-      "MAX_Controller"
     ]
   ],
   "text_variables": {},
