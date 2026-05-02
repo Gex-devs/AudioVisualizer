@@ -4,23 +4,29 @@
     {
       "type": "cortex-debug",
       "request": "launch",
-      "name": "Blue pill",
-      "servertype": "openocd",
+      "name": "remote debug",
+      "servertype": "external",
+      // "gdbTarget": "localhost:3333",
+      "gdbTarget": "mini.pc:3333",
       "armToolchainPath": "/usr/bin",
-      "gdbPath": "/usr/bin/gdb-multiarch",
+      "gdbPath": "/usr/bin/arm-none-eabi-gdb",
       "objdumpPath": "/usr/bin/arm-none-eabi-objdump",
       "cwd": "${workspaceFolder}",
-      "executable": "${workspaceFolder}/build/bluepilltest.elf",
-      "device": "STM32F103CB",  
+      "executable": "${workspaceFolder}/build/dot_matrix.elf",
+      "device": "STM32F401CC",  
       "runToEntryPoint": "main",
-      "svdFile": "${workspaceFolder}/STM32F103xx.svd",
+      "svdFile": "${workspaceFolder}/stm32f401.svd",
       "showDevDebugOutput": "vscode",
       "configFiles": [
-        "interface/stlink-v2.cfg",
-        "target/stm32f1x.cfg"
+        "interface/cmsis-dap.cfg",
+        "target/stm32f4x.cfg"
       ],
+      "osx": {
+        "gdbPath": "/opt/homebrew/bin/arm-none-eabi-gdb"
+      },
+      // "preLaunchTask": "start-openocd",
       "liveWatch": {
-        "enabled": true,
+        "enabled": false,
         "samplesPerSecond": 4
       }
     },

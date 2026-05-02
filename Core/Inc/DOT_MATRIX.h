@@ -15,7 +15,7 @@
 #define DOT_MATRIX_H_
 
 // Replace The "#include" File Below With The CPU Relevant One For Your Board
-#include "stm32f1xx.h"
+#include "stm32f4xx.h"
 
 // The Number OF Separate DOT MATRIX Units (Whether Single or Cascaded) To Be Used In The Project
 #define DOT_MATRIX_UNITS  1
@@ -28,7 +28,7 @@
 // DOT Matrix Timer Base Options
 #define MATRIX_TIMER_EN   1
 #define MATRIX_TIMER      TIM2
-#define MATRIX_TIMER_CLK  72
+#define MATRIX_TIMER_CLK  84
 #define MATRIX_TIME_BASE  1
 
 // DOT Matrix Other Definitions
