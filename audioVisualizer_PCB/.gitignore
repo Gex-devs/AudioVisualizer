@@ -51,6 +51,8 @@ fp-info-cache
 #backups
 audioVisualizer_PCB-backups
 
+.history
+
 #Production Zip
 Production.zip
 production.zip
