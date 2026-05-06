@@ -20,7 +20,7 @@ jobs:
         with:
           persist-credentials: true
       - name: addRepo
-        run:  sudo add-apt-repository -y ppa:kicad/kicad-9.0-releases && sudo apt -y update
+        run:  sudo add-apt-repository -y ppa:kicad/kicad-10.0-releases && sudo apt -y update
       - uses: ConorMacBride/install-package@v1.1.0 
         with:
           apt: kicad poppler-utils
