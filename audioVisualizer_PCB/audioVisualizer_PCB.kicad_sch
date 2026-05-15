@@ -4205,6 +4205,16 @@
 	)
 	(wire
 		(pts
+			(xy 227.33 62.23) (xy 227.33 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0bcf431f-e8fa-4257-b981-5a5004169163")
+	)
+	(wire
+		(pts
 			(xy 140.97 31.75) (xy 153.67 31.75)
 		)
 		(stroke
@@ -4365,7 +4375,7 @@
 	)
 	(wire
 		(pts
-			(xy 220.98 55.88) (xy 220.98 60.96)
+			(xy 215.9 55.88) (xy 215.9 60.96)
 		)
 		(stroke
 			(width 0)
@@ -4482,16 +4492,6 @@
 			(type default)
 		)
 		(uuid "5a9d7e82-0a11-477c-aa59-a2d94f0a8ad7")
-	)
-	(wire
-		(pts
-			(xy 228.6 58.42) (xy 207.01 58.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5cbe3f87-2074-46a0-8f16-6c624e357f3b")
 	)
 	(wire
 		(pts
@@ -4615,7 +4615,7 @@
 	)
 	(wire
 		(pts
-			(xy 218.44 59.69) (xy 218.44 55.88)
+			(xy 214.63 62.23) (xy 214.63 55.88)
 		)
 		(stroke
 			(width 0)
@@ -4705,23 +4705,13 @@
 	)
 	(wire
 		(pts
-			(xy 218.44 55.88) (xy 207.01 55.88)
+			(xy 214.63 55.88) (xy 207.01 55.88)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "928ecee3-a88c-428e-aa25-fde1d47a070a")
-	)
-	(wire
-		(pts
-			(xy 228.6 59.69) (xy 228.6 60.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "92b4bad5-b122-46f8-83be-a2f5f09e3cc4")
 	)
 	(wire
 		(pts
@@ -4735,7 +4725,7 @@
 	)
 	(wire
 		(pts
-			(xy 220.98 60.96) (xy 207.01 60.96)
+			(xy 215.9 60.96) (xy 207.01 60.96)
 		)
 		(stroke
 			(width 0)
@@ -4815,7 +4805,7 @@
 	)
 	(wire
 		(pts
-			(xy 228.6 55.88) (xy 220.98 55.88)
+			(xy 228.6 55.88) (xy 215.9 55.88)
 		)
 		(stroke
 			(width 0)
@@ -4885,7 +4875,7 @@
 	)
 	(wire
 		(pts
-			(xy 228.6 59.69) (xy 218.44 59.69)
+			(xy 214.63 62.23) (xy 227.33 62.23)
 		)
 		(stroke
 			(width 0)
@@ -5025,6 +5015,16 @@
 	)
 	(wire
 		(pts
+			(xy 227.33 60.96) (xy 228.6 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f9312642-f386-494e-9bb9-4287f8f4049b")
+	)
+	(wire
+		(pts
 			(xy 29.21 29.21) (xy 31.75 29.21)
 		)
 		(stroke
@@ -5056,6 +5056,30 @@
 		(uuid "0813d9d5-ecbf-481c-be74-8ec0e4b9910c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 166.7715 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(global_label "SPI_CS"
+		(shape input)
+		(at 176.53 109.22 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "186ffa52-a416-4a71-b293-b33d5e792ae0")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 167.0134 109.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5104,6 +5128,30 @@
 		(uuid "335c82f9-cc34-43ad-8ed6-763a4f514410")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 243.6972 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(global_label "SPI_CS"
+		(shape input)
+		(at 228.6 58.42 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "467d6d15-bb30-4365-8a5a-806386200c27")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 219.0834 58.42 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7570,7 +7618,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5eff1c17-d743-4fb4-9af8-302c4b286a38")
-		(property "Reference" "GND"
+		(property "Reference" "GND1"
 			(at 234.95 114.8079 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7631,7 +7679,7 @@
 		(instances
 			(project "audioVisualizer_PCB"
 				(path "/8779f4c0-fa76-4e9c-9285-12099bba0fb4"
-					(reference "GND")
+					(reference "GND1")
 					(unit 1)
 				)
 			)
@@ -7890,7 +7938,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6814e624-7de5-4e66-810a-c129e7677c97")
-		(property "Reference" "5V"
+		(property "Reference" "5V1"
 			(at 247.65 114.8079 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7951,7 +7999,7 @@
 		(instances
 			(project "audioVisualizer_PCB"
 				(path "/8779f4c0-fa76-4e9c-9285-12099bba0fb4"
-					(reference "5V")
+					(reference "5V1")
 					(unit 1)
 				)
 			)
