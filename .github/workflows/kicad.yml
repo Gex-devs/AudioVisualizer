@@ -26,8 +26,12 @@ jobs:
           apt: kicad poppler-utils
       - name: exportPdf
         run: kicad-cli sch export pdf -b --output ./audioVisualizer_PCB/Preview/temp.pdf audioVisualizer_PCB/audioVisualizer_PCB.kicad_sch 
-      - name: convertToPng
+      - name: exportPcb
+        run: kicad-cli pcb export pdf -l "*" --output ./audioVisualizer_PCB/Preview/temp.pdf audioVisualizer_PCB/audioVisualizer_PCB.kicad_pcb
+      - name: convertToPngSch
         run: pdftoppm -png -r 300 ./audioVisualizer_PCB/Preview/temp.pdf ./audioVisualizer_PCB/Preview/Schematic 
+      - name: convertToPngPcb
+        run: pdftoppm -png -r 300 ./audioVisualizer_PCB/Preview/temp.pdf ./audioVisualizer_PCB/Preview/Pcb
       - name: Commit schematic png
         run: |
           git config user.name "${{ github.actor}}"
