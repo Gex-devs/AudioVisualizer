@@ -46,7 +46,7 @@ typedef struct
 /* USER CODE BEGIN PM */
 #define MATRIX_DISPLAY_UNIT1 0
 #define FFT_LENGTH 64
-#define BUFFER_SIZE (FFT_LENGTH * 2) // I2S data is 16-bit stereo, so we need twice the FFT length for the buffer
+#define BUFFER_SIZE (FFT_LENGTH) // 24bits 32 data frame
 #define MATRIX_X 32
 #define MATRIX_Y 8
 
@@ -60,6 +60,12 @@ I2S_HandleTypeDef hi2s3;
 
 SPI_HandleTypeDef hspi2;
 
+TIM_HandleTypeDef htim2;
+
+UART_HandleTypeDef huart6;
+
+HCD_HandleTypeDef hhcd_USB_OTG_FS;
+
 /* USER CODE BEGIN PV */
 bool i2s_dma_full_flag = false;
 bool i2s_dma_half_flag = false;
@@ -72,7 +78,7 @@ float32_t input_fft[FFT_LENGTH];
 float32_t output_fft[FFT_LENGTH];
 float32_t output_fft_mag[FFT_LENGTH / 2];
 float32_t output_bins[MATRIX_X];
-uint16_t i2s_buffer[BUFFER_SIZE];
+uint32_t i2s_buffer[BUFFER_SIZE];
 
 LogBinMap lut[MATRIX_X];
 
@@ -130,48 +136,47 @@ void rebin_log_audio(float *fft_mag, float *rebin, const LogBinMap *lut, int NUM
     rebin[i] = sum / (float32_t)count;
   }
 }
-  /*
+/*
 
-  FIR filter designed with
-  http://t-filter.appspot.com
+FIR filter designed with
+http://t-filter.appspot.com
 
-  sampling frequency: 16000 Hz
+sampling frequency: 16000 Hz
 
-  * 0 Hz - 3000 Hz
-    gain = 0
-    desired attenuation = -40 dB
-    actual attenuation = -41.44566068037808 dB
+* 0 Hz - 3000 Hz
+  gain = 0
+  desired attenuation = -40 dB
+  actual attenuation = -41.44566068037808 dB
 
-  * 4000 Hz - 8000 Hz
-    gain = 1
-    desired ripple = 5 dB
-    actual ripple = 3.5163656958569183 dB
+* 4000 Hz - 8000 Hz
+  gain = 1
+  desired ripple = 5 dB
+  actual ripple = 3.5163656958569183 dB
 
-  */
+*/
 
-  #define FILTER_TAP_NUM 19
+#define FILTER_TAP_NUM 19
 
-  static float32_t filter_taps[FILTER_TAP_NUM] = {
-      -0.01286737409931033,
-      -0.011582917042481518,
-      0.0709435597229363,
-      -0.05850997474212666,
-      -0.040910558942368495,
-      0.03894710089289564,
-      0.0947634922313574,
-      -0.04258608472470373,
-      -0.31412123784627477,
-      0.543381234624982,
-      -0.31412123784627477,
-      -0.04258608472470373,
-      0.0947634922313574,
-      0.03894710089289564,
-      -0.040910558942368495,
-      -0.05850997474212666,
-      0.0709435597229363,
-      -0.011582917042481518,
-      -0.01286737409931033};
-
+static float32_t filter_taps[FILTER_TAP_NUM] = {
+    -0.01286737409931033,
+    -0.011582917042481518,
+    0.0709435597229363,
+    -0.05850997474212666,
+    -0.040910558942368495,
+    0.03894710089289564,
+    0.0947634922313574,
+    -0.04258608472470373,
+    -0.31412123784627477,
+    0.543381234624982,
+    -0.31412123784627477,
+    -0.04258608472470373,
+    0.0947634922313574,
+    0.03894710089289564,
+    -0.040910558942368495,
+    -0.05850997474212666,
+    0.0709435597229363,
+    -0.011582917042481518,
+    -0.01286737409931033};
 
 float32_t firState[FILTER_TAP_NUM + FFT_LENGTH - 1];
 
@@ -182,6 +187,9 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_I2S3_Init(void);
 static void MX_SPI2_Init(void);
+static void MX_USB_OTG_FS_HCD_Init(void);
+static void MX_TIM2_Init(void);
+static void MX_USART6_UART_Init(void);
 /* USER CODE BEGIN PFP */
 void audio_visualizer_update(float32_t *fft_magnitudes);
 void process_audio_data(float32_t *output_fft_mag);
@@ -235,12 +243,10 @@ void test_visualizer_sine(void)
  */
 void process_audio_data(float32_t *output_fft_mag)
 {
-  for (int i = 0, k = 0; k < FFT_LENGTH; i += 4, k++)
+  for (int i = 0; i < FFT_LENGTH - 1; i++)
   {
-    // Reconsturcting audio data frame 24-bits MSB
-    int32_t left = (((int32_t)i2s_buffer[i] << 16) | i2s_buffer[i + 1]) >> 8;      // 24bit left channel audio frame
-    int32_t right = (((int32_t)i2s_buffer[i + 2] << 16) | i2s_buffer[i + 3]) >> 8; // 24bit right channel audio frame
-    // int32_t sample = (float32_t)right;
+    int32_t left = i2s_buffer[i];
+    int32_t right = i2s_buffer[i + 1];
 
     // squre the audio channels
     right = right * right; // R^2
@@ -250,7 +256,7 @@ void process_audio_data(float32_t *output_fft_mag)
     double sample = sqrt((left + right) / 2);
     // int32_t sample = (left + right) / 2; // average
 
-    input_fft[k] = (float32_t)sample; // Store in FFT input buffer as float
+    input_fft[i] = (float32_t)sample; // Store in FFT input buffer as float
   }
 
   // Applying High-pass filter
@@ -273,12 +279,12 @@ void process_audio_data(float32_t *output_fft_mag)
     input_fft[i] *= window_coff[i]; // Apply Window
   }
 
-  arm_rfft_fast_f32(&fft_instance, input_fft, output_fft, 0);    // Fast FFT
+  arm_rfft_fast_f32(&fft_instance, input_fft, output_fft, 0); // Fast FFT
   // arm_fir_f32(&fir, output_fft, output_fft, FFT_LENGTH);         // apply filter
   arm_cmplx_mag_f32(output_fft, output_fft_mag, FFT_LENGTH / 2); // Get mag values
 }
 
-
+// TODO: Optimize this, it's hard to read.
 void audio_visualizer_update(float32_t *output_fft_mag)
 {
   // Find max magnitude this frame for self-normalization
@@ -298,23 +304,10 @@ void audio_visualizer_update(float32_t *output_fft_mag)
     return;
   }
 
-  int step = (FFT_LENGTH / 2) / MATRIX_X;
-  int c = 0;
-  for (int i = 0; i < (FFT_LENGTH / 2); i += step)
-  {
-    data_avgs[c] = 0.0f;
-    for (int k = 0; k < step; k++)
-    {
-      data_avgs[c] += output_fft_mag[i + k];
-    }
-    data_avgs[c] /= step;
-    c++;
-  }
-
   for (int i = 0; i < MATRIX_X; i++)
   {
     // Normalize 0.0–1.0 then scale to MATRIX_Y
-    float32_t normalized = data_avgs[i] / max_mag;
+    float32_t normalized = output_fft_mag[i] / max_mag;
     int yvalue = (int)(normalized * MATRIX_Y);
     if (yvalue > MATRIX_Y)
       yvalue = MATRIX_Y; // clamp
@@ -334,9 +327,9 @@ void audio_visualizer_update(float32_t *output_fft_mag)
 /* USER CODE END 0 */
 
 /**
-  * @brief  The application entry point.
-  * @retval int
-  */
+ * @brief  The application entry point.
+ * @retval int
+ */
 int main(void)
 {
 
@@ -364,8 +357,11 @@ int main(void)
   MX_GPIO_Init();
   MX_I2S3_Init();
   MX_SPI2_Init();
+  MX_USB_OTG_FS_HCD_Init();
+  MX_TIM2_Init();
+  MX_USART6_UART_Init();
   /* USER CODE BEGIN 2 */
-  DOT_MATRIX_Init_TMR(&hspi1, &htim2);
+  DOT_MATRIX_Init_TMR(&hspi2, &htim2);
   MATRIX_CLEAR(MATRIX_DISPLAY_UNIT1);
 
   // Create fast fft instance
@@ -378,7 +374,7 @@ int main(void)
   // build lut for log rebinning
   build_log_bin_lut(lut, MATRIX_X);
 
-  HAL_I2S_Receive_DMA(&hi2s2, i2s_buffer, BUFFER_SIZE);
+  HAL_I2S_Receive_DMA(&hi2s3, (uint16_t *)i2s_buffer, BUFFER_SIZE);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -396,7 +392,7 @@ int main(void)
 
     //   process_audio_data(&i2s_buffer[0], &out_mag[0]); // Process second half of the buffer
     //   rebin_log_audio(out_mag, output_bins, lut, MATRIX_X); // Optional: re-bin FFT magnitudes into logarithmic frequency bins matching the display columns
-    //   audio_visualizer_update(output_bins);   
+    //   audio_visualizer_update(output_bins);
     //   i2s_dma_half_flag = false;
     //   // Sample microphone input
     // }
@@ -406,9 +402,9 @@ int main(void)
       float32_t out_mag[FFT_LENGTH / 2];
       // float32_t output_bins[FFT_LENGTH / 2];
 
-      process_audio_data(out_mag); // Process second half of the buffer
+      process_audio_data(out_mag);                      // Process second half of the buffer
       rebin_log_audio(out_mag, out_mag, lut, MATRIX_X); // Optional: re-bin FFT magnitudes into logarithmic frequency bins matching the display columns
-      audio_visualizer_update(out_mag);                        // Update display based on FFT results
+      audio_visualizer_update(out_mag);                 // Update display based on FFT results
       i2s_dma_full_flag = false;
       // Sample microphone input
     }
@@ -418,9 +414,9 @@ int main(void)
 }
 
 /**
-  * @brief System Clock Configuration
-  * @retval None
-  */
+ * @brief System Clock Configuration
+ * @retval None
+ */
 void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
@@ -435,43 +431,45 @@ void SystemClock_Config(void)
   __HAL_RCC_PLL_PLLSOURCE_CONFIG(RCC_PLLSOURCE_HSI);
 
   /** Configure the main internal regulator output voltage
-  */
+   */
   __HAL_RCC_PWR_CLK_ENABLE();
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
 
   /** Initializes the RCC Oscillators according to the specified parameters
-  * in the RCC_OscInitTypeDef structure.
-  */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+   * in the RCC_OscInitTypeDef structure.
+   */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLM = 25;
+  RCC_OscInitStruct.PLL.PLLN = 192;
+  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV4;
+  RCC_OscInitStruct.PLL.PLLQ = 4;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
   }
 
   /** Initializes the CPU, AHB and APB buses clocks
-  */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+   */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
   {
     Error_Handler();
   }
 }
 
 /**
-  * @brief I2S3 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief I2S3 Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_I2S3_Init(void)
 {
 
@@ -483,9 +481,9 @@ static void MX_I2S3_Init(void)
 
   /* USER CODE END I2S3_Init 1 */
   hi2s3.Instance = SPI3;
-  hi2s3.Init.Mode = I2S_MODE_MASTER_TX;
+  hi2s3.Init.Mode = I2S_MODE_MASTER_RX;
   hi2s3.Init.Standard = I2S_STANDARD_PHILIPS;
-  hi2s3.Init.DataFormat = I2S_DATAFORMAT_16B;
+  hi2s3.Init.DataFormat = I2S_DATAFORMAT_24B;
   hi2s3.Init.MCLKOutput = I2S_MCLKOUTPUT_DISABLE;
   hi2s3.Init.AudioFreq = I2S_AUDIOFREQ_8K;
   hi2s3.Init.CPOL = I2S_CPOL_LOW;
@@ -498,14 +496,13 @@ static void MX_I2S3_Init(void)
   /* USER CODE BEGIN I2S3_Init 2 */
 
   /* USER CODE END I2S3_Init 2 */
-
 }
 
 /**
-  * @brief SPI2 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief SPI2 Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_SPI2_Init(void)
 {
 
@@ -536,14 +533,119 @@ static void MX_SPI2_Init(void)
   /* USER CODE BEGIN SPI2_Init 2 */
 
   /* USER CODE END SPI2_Init 2 */
-
 }
 
 /**
-  * @brief GPIO Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief TIM2 Initialization Function
+ * @param None
+ * @retval None
+ */
+static void MX_TIM2_Init(void)
+{
+
+  /* USER CODE BEGIN TIM2_Init 0 */
+
+  /* USER CODE END TIM2_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM2_Init 1 */
+
+  /* USER CODE END TIM2_Init 1 */
+  htim2.Instance = TIM2;
+  htim2.Init.Prescaler = 0;
+  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim2.Init.Period = 4294967295;
+  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM2_Init 2 */
+
+  /* USER CODE END TIM2_Init 2 */
+}
+
+/**
+ * @brief USART6 Initialization Function
+ * @param None
+ * @retval None
+ */
+static void MX_USART6_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART6_Init 0 */
+
+  /* USER CODE END USART6_Init 0 */
+
+  /* USER CODE BEGIN USART6_Init 1 */
+
+  /* USER CODE END USART6_Init 1 */
+  huart6.Instance = USART6;
+  huart6.Init.BaudRate = 115200;
+  huart6.Init.WordLength = UART_WORDLENGTH_8B;
+  huart6.Init.StopBits = UART_STOPBITS_1;
+  huart6.Init.Parity = UART_PARITY_NONE;
+  huart6.Init.Mode = UART_MODE_TX_RX;
+  huart6.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart6.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart6) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART6_Init 2 */
+
+  /* USER CODE END USART6_Init 2 */
+}
+
+/**
+ * @brief USB_OTG_FS Initialization Function
+ * @param None
+ * @retval None
+ */
+static void MX_USB_OTG_FS_HCD_Init(void)
+{
+
+  /* USER CODE BEGIN USB_OTG_FS_Init 0 */
+
+  /* USER CODE END USB_OTG_FS_Init 0 */
+
+  /* USER CODE BEGIN USB_OTG_FS_Init 1 */
+
+  /* USER CODE END USB_OTG_FS_Init 1 */
+  hhcd_USB_OTG_FS.Instance = USB_OTG_FS;
+  hhcd_USB_OTG_FS.Init.Host_channels = 8;
+  hhcd_USB_OTG_FS.Init.speed = HCD_SPEED_FULL;
+  hhcd_USB_OTG_FS.Init.dma_enable = DISABLE;
+  hhcd_USB_OTG_FS.Init.phy_itface = HCD_PHY_EMBEDDED;
+  hhcd_USB_OTG_FS.Init.Sof_enable = DISABLE;
+  if (HAL_HCD_Init(&hhcd_USB_OTG_FS) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USB_OTG_FS_Init 2 */
+
+  /* USER CODE END USB_OTG_FS_Init 2 */
+}
+
+/**
+ * @brief GPIO Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
@@ -554,8 +656,8 @@ static void MX_GPIO_Init(void)
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET);
@@ -591,9 +693,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 /* USER CODE END 4 */
 
 /**
-  * @brief  This function is executed in case of error occurrence.
-  * @retval None
-  */
+ * @brief  This function is executed in case of error occurrence.
+ * @retval None
+ */
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
@@ -606,12 +708,12 @@ void Error_Handler(void)
 }
 #ifdef USE_FULL_ASSERT
 /**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
+ * @brief  Reports the name of the source file and the source line number
+ *         where the assert_param error has occurred.
+ * @param  file: pointer to the source file name
+ * @param  line: assert_param error line source number
+ * @retval None
+ */
 void assert_failed(uint8_t *file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
