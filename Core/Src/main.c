@@ -304,23 +304,10 @@ void audio_visualizer_update(float32_t *output_fft_mag)
     return;
   }
 
-  int step = (FFT_LENGTH / 2) / MATRIX_X;
-  int c = 0;
-  for (int i = 0; i < (FFT_LENGTH / 2); i += step)
-  {
-    data_avgs[c] = 0.0f;
-    for (int k = 0; k < step; k++)
-    {
-      data_avgs[c] += output_fft_mag[i + k];
-    }
-    data_avgs[c] /= step;
-    c++;
-  }
-
   for (int i = 0; i < MATRIX_X; i++)
   {
     // Normalize 0.0–1.0 then scale to MATRIX_Y
-    float32_t normalized = data_avgs[i] / max_mag;
+    float32_t normalized = output_fft_mag[i] / max_mag;
     int yvalue = (int)(normalized * MATRIX_Y);
     if (yvalue > MATRIX_Y)
       yvalue = MATRIX_Y; // clamp
