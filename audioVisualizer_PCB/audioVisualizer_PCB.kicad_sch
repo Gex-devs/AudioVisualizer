@@ -5059,6 +5059,18 @@
 		(uuid "5cdaa733-89e6-474d-bdc0-e1134abb49e9")
 	)
 	(rectangle
+		(start 17.78 139.7)
+		(end 130.81 196.85)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "d397d0e0-7535-4f99-846d-1f16cc61b9f1")
+	)
+	(rectangle
 		(start 122.555 14.605)
 		(end 283.21 133.35)
 		(stroke
@@ -5092,7 +5104,7 @@
 	)
 	(text "Flipped LEFT & RIGHT for easier routing"
 		(exclude_from_sim no)
-		(at 76.454 184.912 0)
+		(at 42.418 152.654 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9701,7 +9713,6 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "67e10e8f-aac3-4d5d-bd83-9fd051e1dca0")
 		(property "Reference" "#PWR07"
 			(at 269.24 13.97 0)
@@ -9715,7 +9726,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 269.24 15.24 0)
+			(at 266.7 17.526 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects

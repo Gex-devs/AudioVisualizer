@@ -26,17 +26,17 @@ jobs:
           apt: kicad poppler-utils
       - name: exportPdf
         run: kicad-cli sch export pdf -b --output ./audioVisualizer_PCB/Preview/temp.pdf audioVisualizer_PCB/audioVisualizer_PCB.kicad_sch 
-      - name: exportPcb
-        run: kicad-cli pcb export pdf -l "*" --output ./audioVisualizer_PCB/Preview/temp.pdf audioVisualizer_PCB/audioVisualizer_PCB.kicad_pcb
       - name: convertToPngSch
         run: pdftoppm -png -r 300 ./audioVisualizer_PCB/Preview/temp.pdf ./audioVisualizer_PCB/Preview/Schematic 
+      - name: exportPcb
+        run: kicad-cli pcb export pdf -l "*" --output ./audioVisualizer_PCB/Preview/temp.pdf audioVisualizer_PCB/audioVisualizer_PCB.kicad_pcb
       - name: convertToPngPcb
         run: pdftoppm -png -r 300 ./audioVisualizer_PCB/Preview/temp.pdf ./audioVisualizer_PCB/Preview/Pcb
       - name: Commit schematic png
         run: |
           git config user.name "${{ github.actor}}"
           git config user.email "${{github.actor}}@users.noreply.github.com"
-          git add ./audioVisualizer_PCB/Preview/Schematic-1.png
+          git add ./audioVisualizer_PCB/Preview/
           git diff --cached --quiet || git commit -m "Update schematic preview [skip ci]"
           git push
       - name: debug

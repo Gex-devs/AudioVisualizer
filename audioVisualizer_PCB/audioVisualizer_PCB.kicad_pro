@@ -50,7 +50,23 @@
         "silk_text_thickness": 0.1,
         "silk_text_upright": false,
         "zones": {
-          "min_clearance": 0.5
+          "border_display_style": 2,
+          "border_hatch_pitch": 0.5,
+          "corner_radius": 0.0,
+          "corner_smoothing": 0,
+          "fill_mode": 0,
+          "hatch_gap": 1.5,
+          "hatch_orientation": 0.0,
+          "hatch_smoothing_level": 0,
+          "hatch_smoothing_value": 0.1,
+          "hatch_thickness": 1.0,
+          "min_clearance": 0.5,
+          "min_island_area": 10.0,
+          "min_thickness": 0.25,
+          "pad_connection": 1,
+          "remove_islands": 0,
+          "thermal_relief_gap": 0.5,
+          "thermal_relief_spoke_width": 0.5
         }
       },
       "diff_pair_dimensions": [
@@ -62,7 +78,31 @@
       ],
       "drc_exclusions": [
         [
-          "starved_thermal|43555000|79380000|fab0e7bd-46e7-4287-9109-26115640e655|633a1228-bbb8-4204-b5b9-61cdaedec3cd|B.Cu",
+          "hole_clearance|42944600|73780000|460370ea-4964-4fd1-9e02-7a7c1f17533f|98dd2f91-be8d-46e6-b6eb-697a35c055fd",
+          ""
+        ],
+        [
+          "hole_clearance|42944600|73780000|9220236e-5b21-409a-bc84-8151ff673df4|98dd2f91-be8d-46e6-b6eb-697a35c055fd",
+          ""
+        ],
+        [
+          "hole_clearance|42944600|73780000|985ff8d7-efdc-4d16-920e-f2b6dd148434|98dd2f91-be8d-46e6-b6eb-697a35c055fd",
+          ""
+        ],
+        [
+          "hole_clearance|43130000|73130000|522d7dae-988f-4bd6-81cf-6861487a908f|98dd2f91-be8d-46e6-b6eb-697a35c055fd",
+          ""
+        ],
+        [
+          "hole_clearance|43130000|73130000|6dc38b97-9f4d-46ac-b918-de4372f5d79b|98dd2f91-be8d-46e6-b6eb-697a35c055fd",
+          ""
+        ],
+        [
+          "hole_clearance|43130000|79230000|633a1228-bbb8-4204-b5b9-61cdaedec3cd|42dcfacf-c28b-4d2c-9966-d917e8db3a78",
+          ""
+        ],
+        [
+          "hole_clearance|43130000|79230000|d99e0e91-c2d5-49e5-8cab-d3f47bd056ea|42dcfacf-c28b-4d2c-9966-d917e8db3a78",
           ""
         ]
       ],
