@@ -11,7 +11,7 @@ Made a Add-on type PCB that laches on the back of the LED matrix.
 
 ![Image](Preview/pcb_image.JPG)
 
-![Image](audioVisualizer_PCB/Preview/PCB-1.png)
+![Image](audioVisualizer_PCB/Preview/Pcb-1.png)
 
 ![Document](audioVisualizer_PCB/Preview/Schematic-1.png)
 
