@@ -5239,6 +5239,12 @@
 		(uuid "453308ae-57ff-40b7-b169-bb0a91c2c7c8")
 	)
 	(junction
+		(at 165.1 69.85)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4581bb5d-4e16-46fd-a9d8-28ee53f0e5da")
+	)
+	(junction
 		(at 223.52 73.66)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5275,10 +5281,22 @@
 		(uuid "6226c92f-3baa-47fc-b07d-29d265c832c6")
 	)
 	(junction
+		(at 162.56 77.47)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6297e4c4-926b-433b-8ab4-edb58be7fa2d")
+	)
+	(junction
 		(at 35.56 93.98)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "652a3412-2c0d-4cb7-a4b8-bf9b4e9dc8ba")
+	)
+	(junction
+		(at 161.29 69.85)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "68114223-7e5b-4fa8-9207-41aea5023dbe")
 	)
 	(junction
 		(at 228.6 66.04)
@@ -5544,6 +5562,16 @@
 	)
 	(wire
 		(pts
+			(xy 158.75 77.47) (xy 162.56 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "26e7df85-42d1-4d7e-bbc9-80ff3e16a7cb")
+	)
+	(wire
+		(pts
 			(xy 86.36 177.8) (xy 91.44 177.8)
 		)
 		(stroke
@@ -5674,6 +5702,16 @@
 	)
 	(wire
 		(pts
+			(xy 168.91 50.8) (xy 168.91 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "484f5dd7-b138-4fc2-9ea5-65bebb20b791")
+	)
+	(wire
+		(pts
 			(xy 39.37 38.1) (xy 39.37 35.56)
 		)
 		(stroke
@@ -5691,6 +5729,16 @@
 			(type default)
 		)
 		(uuid "48ba8f73-4ec6-40f6-b9c7-7b82f0b265e4")
+	)
+	(wire
+		(pts
+			(xy 168.91 69.85) (xy 165.1 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "545f4e87-39d6-473e-b0ad-bc580be940cc")
 	)
 	(wire
 		(pts
@@ -6034,6 +6082,16 @@
 	)
 	(wire
 		(pts
+			(xy 162.56 77.47) (xy 165.1 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c646a9aa-2eee-4f6c-83bb-30f1d2f59acf")
+	)
+	(wire
+		(pts
 			(xy 69.85 175.26) (xy 91.44 175.26)
 		)
 		(stroke
@@ -6114,6 +6172,16 @@
 	)
 	(wire
 		(pts
+			(xy 173.99 50.8) (xy 168.91 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "da246e20-9062-4ae1-8365-b7d57422149b")
+	)
+	(wire
+		(pts
 			(xy 254 69.85) (xy 254 73.66)
 		)
 		(stroke
@@ -6171,6 +6239,26 @@
 			(type default)
 		)
 		(uuid "ec51a6c9-c75c-4b31-adff-1f3d7e4dc6ac")
+	)
+	(wire
+		(pts
+			(xy 158.75 69.85) (xy 161.29 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "efbf121a-0140-4955-b359-a5672f20291d")
+	)
+	(wire
+		(pts
+			(xy 161.29 69.85) (xy 165.1 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f1acd855-7ec1-4f95-b7e6-063bb69ec1d1")
 	)
 	(wire
 		(pts
@@ -9194,7 +9282,7 @@
 		(dnp no)
 		(uuid "54376400-81d7-455a-8612-31f755a1c6de")
 		(property "Reference" "CRYS_25"
-			(at 159.512 64.77 0)
+			(at 155.956 59.69 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9412,6 +9500,87 @@
 			(project "audioVisualizer_PCB"
 				(path "/8779f4c0-fa76-4e9c-9285-12099bba0fb4"
 					(reference "#PWR021")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 165.1 73.66 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "599cea5f-f342-40fd-adc1-43377bfeeb79")
+		(property "Reference" "C9"
+			(at 166.37 76.2 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nF"
+			(at 166.37 78.74 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 166.0652 77.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 165.1 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 165.1 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "dda5745b-21c0-4acf-8251-dadff01e1931")
+		)
+		(pin "2"
+			(uuid "d64338d2-0bf9-4340-9b82-51f82177cf8f")
+		)
+		(instances
+			(project "audioVisualizer_PCB"
+				(path "/8779f4c0-fa76-4e9c-9285-12099bba0fb4"
+					(reference "C9")
 					(unit 1)
 				)
 			)
@@ -10912,6 +11081,84 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3.3V")
+		(at 161.29 69.85 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "92a03d4c-fdae-468b-b352-62d5898852bd")
+		(property "Reference" "#PWR023"
+			(at 161.29 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 161.29 64.77 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 161.29 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 161.29 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 161.29 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "ac57ce87-b5d8-4bba-aaa5-46c55b8f1301")
+		)
+		(instances
+			(project "audioVisualizer_PCB"
+				(path "/8779f4c0-fa76-4e9c-9285-12099bba0fb4"
+					(reference "#PWR023")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+5V")
 		(at 35.56 93.98 90)
 		(unit 1)
@@ -11876,6 +12123,85 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 162.56 77.47 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "af4ba89b-357a-4350-97bc-330be5f5d715")
+		(property "Reference" "#PWR033"
+			(at 162.56 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 162.56 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 162.56 77.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 162.56 77.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 162.56 77.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "250a7668-6cf8-4097-b062-2d99aef2537b")
+		)
+		(instances
+			(project "audioVisualizer_PCB"
+				(path "/8779f4c0-fa76-4e9c-9285-12099bba0fb4"
+					(reference "#PWR033")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 88.9 154.94 90)
 		(unit 1)
@@ -12117,6 +12443,87 @@
 			(project "audioVisualizer_PCB"
 				(path "/8779f4c0-fa76-4e9c-9285-12099bba0fb4"
 					(reference "R29")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 158.75 73.66 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "c3ae0be3-bc9b-442a-afb0-ce5ed532f3f8")
+		(property "Reference" "C10"
+			(at 150.622 74.168 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10uF"
+			(at 150.622 76.708 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 159.7152 77.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 158.75 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 158.75 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "8e31797f-ce6d-40db-a26d-de6aeef3c4ca")
+		)
+		(pin "2"
+			(uuid "bd40c68d-260c-4661-8628-c95ba1632ef4")
+		)
+		(instances
+			(project "audioVisualizer_PCB"
+				(path "/8779f4c0-fa76-4e9c-9285-12099bba0fb4"
+					(reference "C10")
 					(unit 1)
 				)
 			)
