@@ -6426,6 +6426,30 @@
 			)
 		)
 	)
+	(global_label "USB_D+"
+		(shape input)
+		(at 209.55 71.12 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "29618f3f-47d0-4f8e-846f-41f72888be19")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 220.1552 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
 	(global_label "MIC_WS"
 		(shape input)
 		(at 209.55 78.74 0)
@@ -6631,6 +6655,30 @@
 		(uuid "93657001-5c6f-4321-9e32-f31485d48f18")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 242.8942 76.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "USB_D-"
+		(shape input)
+		(at 209.55 68.58 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "a9fc65d6-0283-40ff-8f7e-5901c4762f7f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 220.1552 68.58 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11350,7 +11398,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 248.92 52.578 90)
 			(hide yes)
 			(show_name no)
@@ -12560,7 +12608,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 248.92 55.118 90)
 			(hide yes)
 			(show_name no)
