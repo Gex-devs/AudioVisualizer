@@ -12,8 +12,9 @@
     "cortex-debug.gdbPath": "gdb-multiarch", 
     "makefile.extensionOutputFolder": "./.vscode",
     "cortex-debug.armToolchainPath": "/usr/bin",
-    "cortex-debug.openocdPath": "/usr/bin/openocd",
     "stm32-for-vscode.openOCDPath": false,
     "stm32-for-vscode.armToolchainPath": false,
-    "cortex-debug.variableUseNaturalFormat": true
+    "cortex-debug.variableUseNaturalFormat": true,
+
+    "cortex-debug.openocdPath": "/opt/homebrew/bin/openocd"
 }

@@ -84,12 +84,12 @@
         {
             "label": "Flash",
             "type": "process",
-            "command": "/home/gex/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/STM32_Programmer_CLI",
+            "command": "/Applications/STMicroelectronics/STM32Cube/STM32CubeProgrammer/STM32CubeProgrammer.app/Contents/Resources/bin/STM32_Programmer_CLI",
             "args": [
                 "-c",
                 "port=SWD",
                 "-d",
-                "${workspaceFolder}/build/bluepilltest.hex",
+                "${workspaceFolder}/build/dot_matrix.hex",
                 "-v",
                 "-rst",
                 "-halt"
@@ -105,11 +105,11 @@
                 "Build all"
             ]
         },
-        {
-            "label": "start-openocd",
-            "type": "shell",
-            "command": "ssh mini.pc 'openocd -f interface/cmsis-dap.cfg -f target/stm32f4x.cfg'",
-            "isBackground": true
-        }
+        // {
+        //     "label": "start-openocd",
+        //     "type": "shell",
+        //     "command": "ssh mini.pc 'openocd -f interface/cmsis-dap.cfg -f target/stm32f4x.cfg'",
+        //     "isBackground": true
+        // }
     ]
 }

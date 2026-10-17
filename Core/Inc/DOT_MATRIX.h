@@ -23,10 +23,10 @@
 #define MAX_CASCADED_NUM  4
 
 // DOT Matrix SPI Options
-#define DOT_MATRIX_SPI    SPI1
+#define DOT_MATRIX_SPI    SPI2
 
 // DOT Matrix Timer Base Options
-#define MATRIX_TIMER_EN   1
+#define MATRIX_TIMER_EN   0
 #define MATRIX_TIMER      TIM2
 #define MATRIX_TIMER_CLK  84
 #define MATRIX_TIME_BASE  1
