@@ -688,13 +688,17 @@
         "uuid": "8779f4c0-fa76-4e9c-9285-12099bba0fb4"
       }
     ],
-    "used_designators": "#PWR23,#PWR33,C9-10",
+    "used_designators": "R7,R9-11,#PWR4,#PWR9-10,#PWR38,#PWR42-45,J4-11,U3-6",
     "variants": []
   },
   "sheets": [
     [
       "8779f4c0-fa76-4e9c-9285-12099bba0fb4",
       "audioVisualizer_PCB"
+    ],
+    [
+      "32ade03b-f04c-4cf7-9511-25eaf1adadd4",
+      "matrix_interface"
     ]
   ],
   "text_variables": {},
