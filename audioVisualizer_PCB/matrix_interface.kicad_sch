@@ -1937,6 +1937,16 @@
 	)
 	(wire
 		(pts
+			(xy 72.39 68.58) (xy 67.31 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "163f8d73-bc49-499b-b366-8038d598ac8e")
+	)
+	(wire
+		(pts
 			(xy 269.24 43.18) (xy 256.54 43.18)
 		)
 		(stroke
@@ -1954,6 +1964,16 @@
 			(type default)
 		)
 		(uuid "1eaa8f67-2ac8-4e97-9991-1ef049e4f72b")
+	)
+	(wire
+		(pts
+			(xy 72.39 55.88) (xy 67.31 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "20a65a59-cb39-42a5-adbf-6cc04383f3ab")
 	)
 	(wire
 		(pts
@@ -1994,6 +2014,16 @@
 			(type default)
 		)
 		(uuid "2fce5c83-9d5e-42bf-8c11-41c4f37b89cb")
+	)
+	(wire
+		(pts
+			(xy 72.39 71.12) (xy 67.31 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "340091c5-4b06-4609-8d9e-9f2eabfaf644")
 	)
 	(wire
 		(pts
@@ -2047,6 +2077,26 @@
 	)
 	(wire
 		(pts
+			(xy 72.39 63.5) (xy 67.31 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5612c8d2-71d6-42cb-bbd8-9214aabc150a")
+	)
+	(wire
+		(pts
+			(xy 72.39 76.2) (xy 67.31 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5bcc1a39-34f6-429a-aa68-5d5342badeb9")
+	)
+	(wire
+		(pts
 			(xy 180.34 43.18) (xy 180.34 48.26)
 		)
 		(stroke
@@ -2077,6 +2127,16 @@
 	)
 	(wire
 		(pts
+			(xy 72.39 86.36) (xy 67.31 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7fbe78c6-0596-47e0-8385-95bddadf33f5")
+	)
+	(wire
+		(pts
 			(xy 36.83 53.34) (xy 36.83 50.8)
 		)
 		(stroke
@@ -2087,6 +2147,36 @@
 	)
 	(wire
 		(pts
+			(xy 72.39 81.28) (xy 67.31 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "98bdac8e-c035-43b5-bd88-0120d629feb7")
+	)
+	(wire
+		(pts
+			(xy 72.39 58.42) (xy 67.31 58.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a66349b4-6010-4690-a5df-1f05cd7a0396")
+	)
+	(wire
+		(pts
+			(xy 72.39 83.82) (xy 67.31 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ae18477c-b75d-4cb5-9b70-682004999b6d")
+	)
+	(wire
+		(pts
 			(xy 113.03 92.71) (xy 113.03 93.98)
 		)
 		(stroke
@@ -2094,6 +2184,16 @@
 			(type default)
 		)
 		(uuid "aef4c3ee-b20f-41f6-94d3-e367e2ee05af")
+	)
+	(wire
+		(pts
+			(xy 72.39 88.9) (xy 67.31 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b082381e-c9f5-48e1-b820-3a0c31a02ac1")
 	)
 	(wire
 		(pts
@@ -2114,6 +2214,16 @@
 			(type default)
 		)
 		(uuid "b2cc87d3-ebee-474d-960b-89fd55e016c8")
+	)
+	(wire
+		(pts
+			(xy 72.39 66.04) (xy 67.31 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b3e1f568-9a5e-41dc-ad04-2135f46579ba")
 	)
 	(wire
 		(pts
@@ -2147,6 +2257,16 @@
 	)
 	(wire
 		(pts
+			(xy 72.39 78.74) (xy 67.31 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ddabbc41-7980-4f9b-a53e-22ab29190465")
+	)
+	(wire
+		(pts
 			(xy 242.57 43.18) (xy 256.54 43.18)
 		)
 		(stroke
@@ -2154,6 +2274,16 @@
 			(type default)
 		)
 		(uuid "decbe67a-907b-435b-9fe7-5a1fce17b116")
+	)
+	(wire
+		(pts
+			(xy 72.39 91.44) (xy 67.31 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "df61e43e-a51a-4464-96c4-fe881e1159ad")
 	)
 	(wire
 		(pts
@@ -2177,6 +2307,26 @@
 	)
 	(wire
 		(pts
+			(xy 72.39 53.34) (xy 67.31 53.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "eac17ef9-f83d-48ab-ac2b-4f34d8338d5c")
+	)
+	(wire
+		(pts
+			(xy 72.39 60.96) (xy 67.31 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ebabba8a-2797-4f62-aa55-1564ea01245a")
+	)
+	(wire
+		(pts
 			(xy 57.15 43.18) (xy 57.15 48.26)
 		)
 		(stroke
@@ -2184,6 +2334,16 @@
 			(type default)
 		)
 		(uuid "f7424b88-fdca-4a12-822a-831662e8187d")
+	)
+	(wire
+		(pts
+			(xy 72.39 73.66) (xy 67.31 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fb9f2875-7c20-4860-a605-fcc6a02e0e69")
 	)
 	(global_label "SPI_CS"
 		(shape input)
@@ -2957,7 +3117,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x16_Socket")
-		(at 72.39 71.12 0)
+		(at 77.47 71.12 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -2968,7 +3128,7 @@
 		(fields_autoplaced yes)
 		(uuid "4a6e9cba-fef1-45aa-8c7a-84449d911217")
 		(property "Reference" "J4"
-			(at 73.66 71.1199 0)
+			(at 78.74 71.1199 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2979,7 +3139,7 @@
 			)
 		)
 		(property "Value" "Conn_01x16_Socket"
-			(at 73.66 73.6599 0)
+			(at 78.74 73.6599 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2990,7 +3150,7 @@
 			)
 		)
 		(property "Footprint" "otherCustom:DISPLAY_TA08-81GWA"
-			(at 72.39 71.12 0)
+			(at 77.47 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3001,7 +3161,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 72.39 71.12 0)
+			(at 77.47 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3012,7 +3172,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x16, script generated"
-			(at 72.39 71.12 0)
+			(at 77.47 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
